@@ -1,223 +1,190 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Itchy Feet Travels – Conversational Flight & Booking AI Assistant | AIBIGeni Inc</title>
-  <meta name="description" content="Book flights by chatting. Itchy Feet Travels is AIBIGeni's conversational AI for search, pricing, and checkout—built with Dialogflow CX, Vertex AI Search, and Stripe." />
-  <meta name="author" content="AIBIGeni Inc" />
-  <link rel="icon" href="/favicon.ico" />
-  <!-- Open Graph -->
-  <meta property="og:title" content="Itchy Feet Travels – Conversational Flight & Booking AI Assistant" />
-  <meta property="og:description" content="Book flights by chatting. Multi‑city, flexible dates, real‑time pricing, and secure checkout." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://aibigeni.com/pitch" />
-  <meta property="og:image" content="https://aibigeni.com/assets/itchy-feet-og.jpg" />
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Itchy Feet Travels – Conversational Flight & Booking AI Assistant" />
-  <meta name="twitter:description" content="Book flights by chatting. Multi‑city, flexible dates, real‑time pricing, and secure checkout." />
-  <meta name="twitter:image" content="https://aibigeni.com/assets/itchy-feet-og.jpg" />
-  <!-- Schema.org JSON‑LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Itchy Feet Travels",
-    "applicationCategory": "TravelApplication",
-    "operatingSystem": "Web",
-    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-    "publisher": {"@type": "Organization", "name": "AIBIGeni Inc"},
-    "description": "Conversational AI that lets travelers search, plan, and book flights by chatting—supports multi‑city, flexible dates, and secure checkout."
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>EasyFly — Conversational Travel by AIBIGeni</title>
+  <meta name="description" content="EasyFly is a conversational flight booking experience powered by Dialogflow CX, Gemini, Vertex AI, Stripe, and Cloud Run."/>
+  <meta name="theme-color" content="#0f172a"/>
+  <script>tailwind=config={theme:{extend:{colors:{slatebg:'#0f172a'}, boxShadow:{soft:'0 6px 30px rgba(0,0,0,.35)'}}}}</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style id="aibigeni-theme">
+  /* Theme variables */
+  :root{
+    --bg1:#0b1220;        /* deep navy */
+    --bg2:#121a2e;        /* ink */
+    --glow1:rgba(58,116,255,.28);
+    --glow2:rgba(142,68,173,.22);
+    --ring:#283552;       /* card border */
+    --cardTop:#101a33;    /* card gradient start */
+    --cardBot:#0b1220;    /* card gradient end */
+    --accent:#7aa2ff;     /* bright blue accent */
   }
-  </script>
-  <style>
-    :root{--bg:#0b1220;--card:#111a2e;--ink:#eaf2ff;--muted:#a8b3c7;--accent:#4ea8ff;--accent2:#69e0a9;--ring:#2a3756}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220 0%, #0d1426 50%, #0b1220 100%);color:var(--ink)}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    header{display:flex;align-items:center;gap:14px;padding:14px 0}
-    header img{height:36px;width:auto}
-    header .brand{font-weight:700;letter-spacing:.2px}
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:40px 0}
-    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(105,224,169,.12);border:1px solid rgba(105,224,169,.35);color:#b9ffe0;padding:6px 10px;border-radius:999px;font-size:12px}
-    h1{font-size:44px;line-height:1.06;margin:12px 0 10px}
-    p.lead{font-size:18px;color:var(--muted);max-width:680px}
-    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
-    .btn{padding:12px 16px;border-radius:12px;border:1px solid var(--ring);background:linear-gradient(180deg,#17223c,#0f1830);color:var(--ink);font-weight:600}
-    .btn:hover{filter:brightness(1.08)}
-    .btn.primary{border-color:#2762a8;background:linear-gradient(180deg,#2470d6,#1a4ea1)}
-    .btn.ghost{background:transparent}
-    .card{background:linear-gradient(180deg,#0f1830,#0b1220);border:1px solid var(--ring);border-radius:16px;padding:18px}
-    .pill{display:inline-block;background:#17223c;color:#bcd4ff;border:1px solid var(--ring);padding:6px 10px;border-radius:999px;font-size:12px}
-    .grid{display:grid;gap:16px}
-    .grid.features{grid-template-columns:repeat(3,1fr)}
-    .section{padding:26px 0}
-    h2{font-size:26px;margin:0 0 12px}
-    ul{margin:8px 0 0 18px;color:var(--muted)}
-    code.inline{background:#0e162a;border:1px solid #293656;padding:2px 6px;border-radius:8px;color:#d3e1ff}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-    .footer{border-top:1px solid var(--ring);margin-top:40px;padding:20px 0;color:#90a0bb;font-size:14px}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .kbd{border:1px solid var(--ring);background:#0d1529;padding:2px 6px;border-radius:6px}
-    @media (max-width: 900px){.hero{grid-template-columns:1fr}.grid.features{grid-template-columns:1fr}.split{grid-template-columns:1fr}}
-  </style>
+
+  /* Big dark gradient background with soft radial glows */
+  html, body{
+    background:
+      radial-gradient(1100px 700px at 18% 0%, var(--glow1), transparent 40%),
+      radial-gradient(900px 600px at 85% -10%, var(--glow2), transparent 45%),
+      linear-gradient(180deg, var(--bg1), var(--bg2)) !important;
+    color: #dbe7ff;
+  }
+
+  /* Slightly glassy header */
+  header{
+    background: linear-gradient(180deg, rgba(10,16,31,.65), rgba(10,16,31,.25));
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    backdrop-filter: blur(6px);
+  }
+
+  /* Hero heading + accent */
+  h1{
+    color:#e6edff;
+    text-shadow: 0 6px 30px rgba(0,0,0,.35), 0 2px 18px rgba(74,144,255,.15);
+    letter-spacing:.2px;
+  }
+  h1 .text-sky-400{ color: var(--accent) !important; }
+
+  /* Section titles */
+  h2{ color:#e8eeff; }
+
+  /* “Card” look for all rounded blocks used in your layout */
+  section .rounded-2xl,
+  article{
+    background: linear-gradient(180deg, var(--cardTop), var(--cardBot)) !important;
+    border-color: var(--ring) !important;
+    box-shadow:
+      0 12px 38px rgba(0,0,0,.35),
+      inset 0 1px 0 rgba(255,255,255,.04);
+  }
+
+  /* Small pills/tags stay readable */
+  .text-sky-300, .text-emerald-300, .text-fuchsia-300, .text-amber-300,
+  .text-indigo-300, .text-purple-300 { color:#bcd4ff !important; opacity:.9; }
+
+  /* Links & nav hover pop a bit more */
+  a{ transition: color .15s ease, filter .2s ease; }
+  nav a{ color:#b4c6ff; }
+  nav a:hover{ color:#ffffff; }
+
+  /* Primary button glow nudge (keeps your existing gradient) */
+  .shadow-soft{ box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.04); }
+
+  /* Video well */
+  video{ background:#0a0f1f; border-color: var(--ring) !important; }
+
+  /* Footer line tint */
+  footer{ border-top-color: rgba(255,255,255,.06) !important; }
+    </style>
+
+  <link rel="icon" href="/favicon-32.png" />
 </head>
-<body>
-  <div class="wrap">
-    <header>
-      <a href="/" title="AIBIGeni Home">
-        <!-- Use the same logo as the main page -->
-        <img src="/assets/aibigeni-logo-1024.png" alt="AIBIGeni logo">
-      </a>
-      <div class="brand">AIBIGeni Inc</div>
-      <div style="margin-left:auto"><span class="pill">Pitch</span></div>
-    </header>
+<body class="min-h-screen bg-slatebg text-slate-200">
+  <header class="mx-auto flex max-w-6xl items-center justify-between px-4 py-6">
+    <a class="flex items-center gap-3" href="/">
+      <img src="/aibigeni-logo-1024.png" alt="AIBIGeni" class="h-10 w-10 rounded-xl"/>
+      <span class="text-xl font-semibold tracking-wide">AIBIGeni</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6 text-slate-300">
+      <a class="hover:text-white" href="/">Home</a>
+      <a class="hover:text-white" href="#demo">Demo</a>
+      <a class="hover:text-white" href="#how">How it works</a>
+      <a class="hover:text-white" href="#roadmap">Roadmap</a>
+      <a class="hover:text-white" href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <section class="hero">
-      <div>
-        <span class="badge">New • Private beta</span>
-        <h1>Itchy Feet Travels<br/>Conversational Flight & Booking AI Assistant</h1>
-        <p class="lead">Book flights by chatting. Ask for “NYC to SFO next weekend under $350,” tweak dates, compare airlines, and checkout—without forms. Built with secure payment and real‑time search.</p>
-        <div class="cta">
-          <a class="btn primary" href="#demo">Watch 90‑sec demo</a>
-          <a class="btn" href="#how">How it works</a>
-          <a class="btn ghost" href="#contact">Talk to us</a>
-        </div>
-        <div style="margin-top:12px;color:#8fb0ff" class="mono">Product one‑liner: "Chat to plan & book flights—fast."</div>
-      </div>
-      <div>
-        <!-- Replace placeholder with future-proof video block -->
-        <div class="card" id="demo" style="padding:0; border-radius:12px; overflow:hidden;">
-          <video
-            id="itchy-feet-demo"
-            controls
-            preload="none"
-            poster="/assets/itchy-feet-poster.jpg"
-            style="width:100%;height:auto;display:block;background:#0c1324">
-            <source src="/assets/video/itchy-feet-demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <div style="padding:12px; display:flex; gap:8px; align-items:center; border-top:1px solid #2a3756">
-            <a class="btn" href="mailto:hello@aibigeni.com?subject=Itchy%20Feet%20Travels%20Demo">Request Live Demo</a>
-            <a class="btn ghost" href="#contact">Contact</a>
-            <span style="margin-left:auto; color:#a8b3c7; font-size:12px;">Demo video coming soon</span>
-          </div>
-        </div>
+  <main class="mx-auto max-w-6xl px-4 pb-16">
+    <section class="mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+        EasyFly — Conversational Travel
+      </h1>
+      <p class="mt-4 text-slate-300">
+        Natural-language flight search & booking via Dialogflow CX + Gemini. Secure checkout with Stripe. Hotel inventory coming soon.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="#demo" class="rounded-xl border border-sky-500 bg-gradient-to-b from-sky-500 to-sky-700 px-4 py-3 font-semibold text-white shadow-soft hover:brightness-110">View Demo</a>
+        <a href="#contact" class="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:bg-slate-800/50">Talk to us</a>
       </div>
     </section>
 
-    <section class="section" id="highlights">
-      <h2>Why now</h2>
-      <div class="grid features">
-        <div class="card"><strong>Frictionless search</strong><br/><span style="color:var(--muted)">Natural‑language queries: multi‑city, flexible dates, price caps.</span></div>
-        <div class="card"><strong>Trustworthy checkout</strong><br/><span style="color:var(--muted)">PCI‑compliant payments via Stripe; transparent fees & policies.</span></div>
-        <div class="card"><strong>Agentic UX</strong><br/><span style="color:var(--muted)">The AI clarifies constraints, compares options, and books for you.</span></div>
+    <section id="demo" class="grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-4">
+        <!-- Works immediately when you upload /assets/demo.mp4 -->
+        <video class="w-full aspect-video rounded-xl border border-slate-700 bg-slate-950" controls preload="metadata" src="/assets/demo.mp4">
+          Sorry, your browser doesn’t support embedded videos.
+        </video>
+        <p class="mt-3 text-xs text-slate-400">
+          Sample flow: origin → destination → dates → cabin → confirm → Stripe checkout.
+        </p>
       </div>
-    </section>
-
-    <section class="section" id="how">
-      <h2>How it works</h2>
-      <div class="card">
-        <pre class="mono" style="white-space:pre-wrap;line-height:1.35;color:#bfd3ff">User query → <span class="kbd">Dialogflow CX</span> (intent & entities)
-→ Orchestration API (FastAPI on Cloud Run)
-→ <span class="kbd">Vertex AI Search</span> over flight inventory / cached offers
-→ Pricing & rules engine → Options ranked by price, duration, stops
-→ AI explains tradeoffs → user approves → <span class="kbd">Stripe</span> checkout
-→ Confirmation + itinerary.</span></pre>
-      </div>
-      <ul>
-        <li>Built components today: Dialogflow CX intents, Vertex AI Search over hotels (flights index in progress), Stripe Elements checkout, Cloud Run backend, React+Vite frontend.</li>
-        <li>Near‑term: Firestore persistence, Discovery Engine configured to BigQuery flight/hotel tables, CX parameter hardening, live inventory integration.</li>
-      </ul>
-    </section>
-
-    <section class="section" id="features">
-      <h2>Key capabilities</h2>
-      <div class="grid features">
-        <div class="card"><span class="pill">NL Search</span><br/>"SDF→DXB Jan 5–12, 1 stop max, under $900"</div>
-        <div class="card"><span class="pill">Multi‑City</span><br/>Louisville → NYC → SFO → Louisville in one chat</div>
-        <div class="card"><span class="pill">Comparisons</span><br/>Airlines, layovers, fare class, change fees</div>
-        <div class="card"><span class="pill">Notifications</span><br/>Hold fares, price‑drop pings, rebook prompts</div>
-        <div class="card"><span class="pill">Checkout</span><br/>Stripe pay, taxes & fees clarity, receipts</div>
-        <div class="card"><span class="pill">Export</span><br/>Email itinerary, .ics calendar, shareable link</div>
-      </div>
-    </section>
-
-    <section class="section" id="tech">
-      <h2>Tech stack</h2>
-      <div class="split">
-        <div class="card">
-          <strong>Frontend</strong>
-          <ul>
-            <li>React + Vite</li>
-            <li>Chat UI, results cards, checkout flow</li>
-          </ul>
-          <strong>AI & Search</strong>
-          <ul>
-            <li>Dialogflow CX for intents/entities</li>
-            <li>Vertex AI Search (Discovery Engine) over BigQuery</li>
-          </ul>
-        </div>
-        <div class="card">
-          <strong>Backend</strong>
-          <ul>
-            <li>Python FastAPI on Cloud Run</li>
-            <li>Firestore (planned) for sessions & carts</li>
-            <li>Stripe Elements/Checkout for payments</li>
-          </ul>
-          <strong>Infra</strong>
-          <ul>
-            <li>GCP: Cloud Run, Firestore, Discovery Engine</li>
-            <li>Observability: Logs & metrics in Cloud Logging</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="roadmap">
-      <h2>Roadmap</h2>
-      <div class="grid">
-        <div class="card"><strong>MVP (now)</strong><br/><span class="muted">Chat flow, sample search, mock pricing, Stripe test mode.</span></div>
-        <div class="card"><strong>Beta (4–8 wks)</strong><br/><span class="muted">Live inventory, Firestore carts, hold & rebook, travel emails/ICS.</span></div>
-        <div class="card"><strong>GA</strong><br/><span class="muted">Scalable multi‑tenant, loyalty & ancillaries, refunds, support agent.</span></div>
-      </div>
-    </section>
-
-    <section class="section" id="portfolio">
-      <h2>Related apps</h2>
-      <div class="split">
-        <div class="card"><strong>SkinTelGeni</strong><br/><span style="color:var(--muted)">AI skincare analysis & routines. Data collection & AutoML in progress.</span></div>
-        <div class="card"><strong>HairCareGeni</strong><br/><span style="color:var(--muted)">Hair/scalp analysis & product recs. Firebase + Vertex AI roadmap.</span></div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <h2>About AIBIGeni Inc</h2>
-      <p class="lead">Company one‑liner: <em>"We build agentic AI assistants that turn complex tasks into simple conversations."</em></p>
-      <div class="card">
-        <strong>Sector</strong>: TravelTech • AI Agents • Conversational Commerce (LLM/ML application layer)<br/>
-        <strong>Website</strong>: <a href="https://aibigeni.com">aibigeni.com</a>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <h2>Get in touch</h2>
-      <div class="card">
-        <p>Interested in the beta, partnerships, or investing? Reach out and we’ll share a live demo link.</p>
-        <ul>
-          <li>Email: <a href="mailto:reachme@aibigeni.com">reachme@aibigeni.com</a></li>
-          <li>Demo request: <a href="#live">Request access</a></li>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h2 class="text-xl font-semibold mb-2">Key Capabilities</h2>
+        <ul class="list-disc pl-5 text-slate-300 space-y-1">
+          <li>Dialogflow CX for robust intent & slot filling</li>
+          <li>Gemini prompts for natural, helpful responses</li>
+          <li>Vertex AI Search over flight/hotel datasets</li>
+          <li>FastAPI backend + Cloud Run for scale</li>
+          <li>Stripe Elements for secure payments</li>
+          <li>Firestore session memory & auth</li>
         </ul>
       </div>
     </section>
 
-    <footer class="footer">
-      © <span id="y"></span> AIBIGeni Inc · All rights reserved · <a href="/">Home</a>
-    </footer>
-  </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+    <section id="how" class="mt-10 rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+      <h2 class="text-xl font-semibold mb-2">How it works</h2>
+      <ol class="list-decimal pl-5 text-slate-300 space-y-1">
+        <li>User asks in plain language (voice or chat)</li>
+        <li>CX extracts origin, destination, dates, cabin, pax</li>
+        <li>Backend queries inventory & prices (Vertex AI Search / APIs)</li>
+        <li>Gemini drafts natural confirmations or suggestions</li>
+        <li>Stripe for payment → booking confirmation</li>
+        <li>Firestore stores session & preferences securely</li>
+      </ol>
+    </section>
+
+    <section id="roadmap" class="mt-10 grid gap-6 md:grid-cols-3">
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="font-semibold">Now</h3>
+        <ul class="mt-2 text-slate-300 text-sm space-y-1">
+          <li>Flights conversational MVP</li>
+          <li>Stripe test mode checkout</li>
+          <li>Firestore memory</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="font-semibold">Next</h3>
+        <ul class="mt-2 text-slate-300 text-sm space-y-1">
+          <li>Hotel search & bundles</li>
+          <li>Seat selection & ancillaries</li>
+          <li>Post-booking chat & changes</li>
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="font-semibold">Later</h3>
+        <ul class="mt-2 text-slate-300 text-sm space-y-1">
+          <li>Loyalty integrations</li>
+          <li>Multi-agent travel ops</li>
+          <li>Voice IVR & kiosks</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="mt-10 rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+      <h2 class="text-xl font-semibold">Partner with us</h2>
+      <p class="mt-2 text-slate-300">Looking to launch conversational booking or modernize your travel stack?</p>
+      <div class="mt-4 space-y-2">
+        <a class="inline-block rounded-xl border border-slate-700 px-4 py-3 hover:bg-slate-800/60" href="mailto:reachme@aibigeni.com">reachme@aibigeni.com</a>
+        <a class="inline-block rounded-xl border border-slate-700 px-4 py-3 hover:bg-slate-800/60 ml-3" href="mailto:support@aibigeni.com">support@aibigeni.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-800/70 py-6">
+    <div class="mx-auto max-w-6xl px-4 text-sm text-slate-400">
+      © <span id="y"></span> AIBIGeni Inc • EasyFly by AIBIGeni
+    </div>
+  </footer>
+  <script src="/main.js"></script>
 </body>
 </html>

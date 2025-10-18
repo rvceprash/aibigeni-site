@@ -3,12 +3,80 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AIBIGeni — Applied AI for Wellness & Workflows</title>
-  <meta name="description" content="AIBIGeni builds niche AI products and agents. SkinTelGeni for skincare; Python + Flutter builds; LangChain automations and enterprise integrations." />
+  <title>AIBIGeni — From Prompt to Production</title>
+  <meta name="description" content="AIBIGeni builds AI-first apps for the real world — EasyFly conversational travel, multi-agent backends, and cloud-scale deployments on Google Cloud." />
   <meta name="theme-color" content="#0f172a" />
-  <style>body{background-color:#0f172a;}</style>
-  <script>tailwind.config = { theme: { extend: { colors: { slatebg: '#0f172a' } } } }</script>
+  <script>tailwind=config={theme:{extend:{colors:{slatebg:'#0f172a'}, boxShadow:{soft:'0 6px 30px rgba(0,0,0,.35)'}}}}</script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style id="aibigeni-theme">
+  /* Theme variables */
+  :root{
+    --bg1:#0b1220;        /* deep navy */
+    --bg2:#121a2e;        /* ink */
+    --glow1:rgba(58,116,255,.28);
+    --glow2:rgba(142,68,173,.22);
+    --ring:#283552;       /* card border */
+    --cardTop:#101a33;    /* card gradient start */
+    --cardBot:#0b1220;    /* card gradient end */
+    --accent:#7aa2ff;     /* bright blue accent */
+  }
+
+  /* Big dark gradient background with soft radial glows */
+  html, body{
+    background:
+      radial-gradient(1100px 700px at 18% 0%, var(--glow1), transparent 40%),
+      radial-gradient(900px 600px at 85% -10%, var(--glow2), transparent 45%),
+      linear-gradient(180deg, var(--bg1), var(--bg2)) !important;
+    color: #dbe7ff;
+  }
+
+  /* Slightly glassy header */
+  header{
+    background: linear-gradient(180deg, rgba(10,16,31,.65), rgba(10,16,31,.25));
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    backdrop-filter: blur(6px);
+  }
+
+  /* Hero heading + accent */
+  h1{
+    color:#e6edff;
+    text-shadow: 0 6px 30px rgba(0,0,0,.35), 0 2px 18px rgba(74,144,255,.15);
+    letter-spacing:.2px;
+  }
+  h1 .text-sky-400{ color: var(--accent) !important; }
+
+  /* Section titles */
+  h2{ color:#e8eeff; }
+
+  /* “Card” look for all rounded blocks used in your layout */
+  section .rounded-2xl,
+  article{
+    background: linear-gradient(180deg, var(--cardTop), var(--cardBot)) !important;
+    border-color: var(--ring) !important;
+    box-shadow:
+      0 12px 38px rgba(0,0,0,.35),
+      inset 0 1px 0 rgba(255,255,255,.04);
+  }
+
+  /* Small pills/tags stay readable */
+  .text-sky-300, .text-emerald-300, .text-fuchsia-300, .text-amber-300,
+  .text-indigo-300, .text-purple-300 { color:#bcd4ff !important; opacity:.9; }
+
+  /* Links & nav hover pop a bit more */
+  a{ transition: color .15s ease, filter .2s ease; }
+  nav a{ color:#b4c6ff; }
+  nav a:hover{ color:#ffffff; }
+
+  /* Primary button glow nudge (keeps your existing gradient) */
+  .shadow-soft{ box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.04); }
+
+  /* Video well */
+  video{ background:#0a0f1f; border-color: var(--ring) !important; }
+
+  /* Footer line tint */
+  footer{ border-top-color: rgba(255,255,255,.06) !important; }
+  </style>
+
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -17,254 +85,187 @@
 <body class="min-h-screen bg-slatebg text-slate-200">
   <!-- Header -->
   <header class="mx-auto flex max-w-6xl items-center justify-between px-4 py-6">
-    <div class="flex items-center gap-3">
-      <!-- Logo -->
-      <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow" aria-label="AIBIGeni logo">
-        <defs><radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#67e8f9" /><stop offset="50%" stop-color="#7c3aed" /><stop offset="100%" stop-color="#1e293b" /></radialGradient></defs>
-        <circle cx="32" cy="32" r="30" fill="url(#g)" opacity="0.2" />
-        <path d="M32 10c6 0 10 4 10 10 0 6-4 10-10 10s-10 4-10 10c0 6 4 10 10 10" stroke="#67e8f9" stroke-width="2.5" stroke-linecap="round" fill="none" />
-        <circle cx="32" cy="20" r="3" fill="#67e8f9" />
-        <circle cx="22" cy="40" r="2.5" fill="#a78bfa" />
-        <circle cx="42" cy="40" r="2.5" fill="#22d3ee" />
-        <circle cx="32" cy="32" r="18" stroke="#a78bfa" stroke-opacity="0.35" fill="none" />
-      </svg>
-      <div class="leading-none">
-        <div class="font-extrabold tracking-tight text-xl md:text-2xl text-slate-100">
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-violet-400">AI</span>BIGeni
-        </div>
-        <div class="text-[10px] md:text-xs text-slate-400 -mt-0.5">Applied Intelligence, Beautifully Built</div>
-      </div>
-    </div>
-    <nav class="hidden gap-6 text-sm md:flex">
-      <a href="#services" class="text-slate-300 hover:text-white">Services</a>
-      <a href="#packages" class="text-slate-300 hover:text-white">Packages</a>
-      <a href="#product" class="text-slate-300 hover:text-white">SkinTelGeni</a>
-      <a href="#stack" class="text-slate-300 hover:text-white">Tech</a>
-      <a href="#contact" class="text-slate-300 hover:text-white">Contact</a>
+    <a class="flex items-center gap-3" href="/">
+      <img src="/aibigeni-logo-1024.png" alt="AIBIGeni" class="h-10 w-10 rounded-xl" />
+      <span class="text-xl font-semibold tracking-wide">AIBIGeni</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6 text-slate-300">
+      <a class="hover:text-white" href="/pitch/">Pitch</a>
+      <a class="hover:text-white" href="#offerings">Offerings</a>
+      <a class="hover:text-white" href="#stack">Stack</a>
+      <a class="hover:text-white" href="#packages">Packages</a>
+      <a class="hover:text-white" href="#contact">Contact</a>
     </nav>
   </header>
 
   <!-- Hero -->
-  <section class="relative overflow-hidden">
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-500/20 via-fuchsia-500/10 to-transparent"></div>
-    <div class="mx-auto max-w-6xl px-4 py-12 md:py-20">
-      <div class="grid items-center gap-10 md:grid-cols-2">
-        <div>
-          <span class="inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200">Delaware • Kentucky • India.Remote</span>
-          <h1 class="mt-4 text-4xl md:text-6xl font-extrabold tracking-tight text-white">Applied AI for <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-violet-400">Wellness & Workflows</span></h1>
-          <p class="mt-4 text-slate-300 max-w-xl">AIBIGeni builds niche AI products and agents. Our flagship app <span class="font-semibold">SkinTelGeni</span> delivers skincare insights; our services team crafts Python + Flutter solutions, LangChain-powered automations, enterprise integrations, and focused game prototypes.</p>
-          <div class="mt-6 flex flex-wrap items-center gap-3">
-            <a href="#contact" class="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold text-slate-900 bg-gradient-to-r from-cyan-300 to-violet-400 shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-cyan-300/50">Start a Project</a>
-            <a href="#product" class="text-slate-300 hover:text-white">See SkinTelGeni →</a>
-          </div>
+  <section class="mx-auto max-w-6xl px-4 pb-2 pt-4">
+    <div class="grid gap-8 md:grid-cols-2 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+          From Prompt to Production — <span class="text-sky-400">AI-first apps</span> for the real world.
+        </h1>
+        <p class="mt-4 text-slate-300">
+          We build intelligent travel experiences (EasyFly), multi-agent backends, and cloud-scale mobile & web apps on Google Cloud —
+          powered by Vertex AI, Gemini, Firebase, and Cloud Run.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/pitch/" class="rounded-xl border border-sky-500 bg-gradient-to-b from-sky-500 to-sky-700 px-4 py-3 font-semibold text-white shadow-soft hover:brightness-110">Explore EasyFly</a>
+          <a href="#offerings" class="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:bg-slate-800/50">See AI Projects</a>
         </div>
-        <div class="relative">
-          <div class="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-br from-cyan-500/10 to-fuchsia-500/10 blur-2xl"></div>
-          <div class="rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900 to-slate-950 p-6 shadow-xl">
-            <div class="grid grid-cols-2 gap-4">
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur"><h3 class="text-lg font-semibold text-slate-100">AI Agents</h3><p class="mt-2 text-sm text-slate-300">LangChain/LangGraph playbooks, retrieval, tool use.</p></div>
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur"><h3 class="text-lg font-semibold text-slate-100">Mobile Apps</h3><p class="mt-2 text-sm text-slate-300">Flutter iOS/Android, camera & on-device ML.</p></div>
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur"><h3 class="text-lg font-semibold text-slate-100">Python Backends</h3><p class="mt-2 text-sm text-slate-300">FastAPI, vector search, pipelines & ETL.</p></div>
-              <div class="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur"><h3 class="text-lg font-semibold text-slate-100">UX & Frontends</h3><p class="mt-2 text-sm text-slate-300">Static sites or Next.js dashboards.</p></div>
-            </div>
-          </div>
-        </div>
+      </div>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-4 shadow-soft">
+        <!-- Drop your /assets/demo.mp4 here later; this will start working automatically -->
+        <video class="w-full aspect-video rounded-xl border border-slate-700 bg-slate-950" controls preload="metadata" src="/assets/demo.mp4">
+          Sorry, your browser doesn’t support embedded videos.
+        </video>
+        <p class="mt-3 text-xs text-slate-400">
+          Conversational flight search & booking with Dialogflow CX + Vertex AI + Stripe checkout. Hotels next.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services" class="mx-auto max-w-6xl px-4 py-16 md:py-24">
-    <h2 class="text-2xl md:text-4xl font-bold text-slate-100 tracking-tight">Services</h2>
-    <p class="mt-2 max-w-2xl text-slate-400">Focused, product-grade execution with measurable outcomes.</p>
-    <div class="mt-8 grid gap-6 md:grid-cols-3">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="text-lg font-semibold text-white">AI for Personal Wellness</h3>
-        <p class="mt-2 text-sm text-slate-300">Skin analysis, routine engines, product matchers, privacy-by-design.</p>
-        <ul class="mt-4 list-disc pl-5 text-sm text-slate-300 space-y-1">
-          <li>Computer vision (face/skin)</li>
-          <li>Inference pipelines & feedback loops</li>
-          <li>Ethical data handling</li>
-        </ul>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="text-lg font-semibold text-white">Custom AI Agents & Automation</h3>
-        <p class="mt-2 text-sm text-slate-300">LangChain/RAG, document Q&A, task orchestration for teams.</p>
-        <ul class="mt-4 list-disc pl-5 text-sm text-slate-300 space-y-1">
-          <li>Retrieval + tools (APIs, spreadsheets)</li>
-          <li>Evaluation & safety guardrails</li>
-          <li>Observability (Langfuse)</li>
-        </ul>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="text-lg font-semibold text-white">Full-Stack App Builds</h3>
-        <p class="mt-2 text-sm text-slate-300">Flutter frontends + Python backends with robust CI/CD and analytics.</p>
-        <ul class="mt-4 list-disc pl-5 text-sm text-slate-300 space-y-1">
-          <li>FastAPI, Postgres/SQLite, vector DB</li>
-          <li>Secure auth & payments</li>
-          <li>Vercel/Netlify, OCI/Azure</li>
-        </ul>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="text-lg font-semibold text-white">Game Development</h3>
-        <p class="mt-2 text-sm text-slate-300">Flutter/Flame 2D prototypes, AI-driven NPCs, procedural systems.</p>
-        <ul class="mt-4 list-disc pl-5 text-sm text-slate-300 space-y-1">
-          <li>Mobile-first gameplay loops</li>
-          <li>On-device inference & CV</li>
-          <li>Live-ops ready foundations</li>
-        </ul>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="text-lg font-semibold text-white">Enterprise Integrations (LangChain)</h3>
-        <p class="mt-2 text-sm text-slate-300">Agents that connect to CRMs, ERPs, docs, and internal APIs.</p>
-        <ul class="mt-4 list-disc pl-5 text-sm text-slate-300 space-y-1">
-          <li>RAG over proprietary data</li>
-          <li>Tool-use across SaaS & databases</li>
-          <li>Observability, evals & guardrails</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  <!-- Offerings / Cards -->
+  <section id="offerings" class="mx-auto max-w-6xl px-4 py-10">
+    <h2 class="text-2xl font-semibold mb-4">What we ship</h2>
+    <div class="grid gap-4 md:grid-cols-3">
+      <!-- EasyFly -->
+      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
+        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-sky-900/40 border border-sky-800 text-sky-300">Product</div>
+        <h3 class="mt-3 text-xl font-semibold">EasyFly — Conversational Travel</h3>
+        <p class="mt-2 text-slate-300">
+          Voice/chat flight booking powered by Dialogflow CX, Gemini, and Vertex AI Search. Payments via Stripe. Hotels next.
+        </p>
+        <a href="/pitch/" class="mt-3 inline-block text-sky-400 hover:text-sky-300">Learn more →</a>
+      </article>
 
-  <!-- Packages -->
-  <section id="packages" class="mx-auto max-w-6xl px-4 py-16 md:py-24">
-    <h2 class="text-2xl md:text-4xl font-bold text-slate-100 tracking-tight">Packages</h2>
-    <p class="mt-2 max-w-2xl text-slate-400">Clear scopes, fast outcomes. Pick a starting point—customized to your data and goals.</p>
-    <div class="mt-8 grid gap-6 md:grid-cols-3">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200">Prototype</div>
-        <h3 class="mt-3 text-lg font-semibold text-white">2–4 weeks</h3>
-        <p class="mt-2 text-sm text-slate-300">Clickable demo or playable 2D prototype. Perfect for stakeholder buy-in.</p>
-        <ul class="mt-4 list-disc pl-5 text-sm text-slate-300 space-y-1">
-          <li>Core UX + 1–2 AI features</li>
-          <li>Mobile-first (Flutter) or Web</li>
-          <li>Light metrics & error tracking</li>
-        </ul>
-        <div class="mt-4 text-sm text-slate-400">From <span class="font-semibold text-slate-200">$4.9k</span></div>
-        <a href="#contact" class="mt-4 inline-flex rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/15">Start Prototype</a>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200">Enterprise Integration</div>
-        <h3 class="mt-3 text-lg font-semibold text-white">3–6 weeks</h3>
-        <p class="mt-2 text-sm text-slate-300">LangChain agents wired to your CRM/ERP/docs with guardrails and evals.</p>
-        <ul class="mt-4 list-disc pl-5 text-sm text-slate-300 space-y-1">
-          <li>RAG over proprietary data</li>
-          <li>Tool-use across SaaS & DBs</li>
-          <li>Observability (Langfuse)</li>
-        </ul>
-        <div class="mt-4 text-sm text-slate-400">From <span class="font-semibold text-slate-200">$12k</span></div>
-        <a href="#contact" class="mt-4 inline-flex rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/15">Discuss Integration</a>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200">Launch</div>
-        <h3 class="mt-3 text-lg font-semibold text-white">6–10 weeks</h3>
-        <p class="mt-2 text-sm text-slate-300">Production build with auth, payments, analytics, and CI/CD.</p>
-        <ul class="mt-4 list-disc pl-5 text-sm text-slate-300 space-y-1">
-          <li>Python backend (FastAPI)</li>
-          <li>Flutter or Web front-end</li>
-          <li>Basic monitoring & playbooks</li>
-        </ul>
-        <div class="mt-4 text-sm text-slate-400">From <span class="font-semibold text-slate-200">$25k</span></div>
-        <a href="#contact" class="mt-4 inline-flex rounded-2xl bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/15">Plan Launch</a>
-      </div>
-    </div>
-  </section>
+      <!-- AI Agents -->
+      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
+        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-emerald-900/30 border border-emerald-800 text-emerald-300">Agents</div>
+        <h3 class="mt-3 text-xl font-semibold">AI Agents & Automations</h3>
+        <p class="mt-2 text-slate-300">
+          Task-oriented, tool-using agents with memory (Firestore) and orchestration (Cloud Run) — customer support, research, travel ops, and more.
+        </p>
+      </article>
 
-  <!-- Product -->
-  <section id="product" class="mx-auto max-w-6xl px-4 py-16 md:py-24">
-    <h2 class="text-2xl md:text-4xl font-bold text-slate-100 tracking-tight">SkinTelGeni Skincare App</h2>
-    <p class="mt-2 max-w-2xl text-slate-400">AI that grades glow, tracks progress, and recommends routines.</p>
-    <div class="mt-8 grid gap-6 md:grid-cols-2">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="text-white font-semibold">Features</h3>
-        <ul class="mt-3 space-y-2 text-sm text-slate-300 list-disc pl-5">
-          <li>Photo timeline + on-device analysis</li>
-          <li>Personalized routines backed by rules/ML</li>
-          <li>Product catalog with evidence grading</li>
-        </ul>
-        <div class="mt-4 flex gap-3">
-          <span class="inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200">Flutter</span>
-          <span class="inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200">Python</span>
-          <span class="inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200">YOLO / CV</span>
-        </div>
-      </div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <h3 class="text-white font-semibold">Outcomes</h3>
-        <ul class="mt-3 space-y-2 text-sm text-slate-300 list-disc pl-5">
-          <li>Baseline glow score & weekly deltas</li>
-          <li>Routine adherence nudges</li>
-          <li>Shareable progress for dermatology consults</li>
-        </ul>
-        <div class="mt-4">
-          <a href="#contact" class="inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-semibold text-slate-900 bg-gradient-to-r from-cyan-300 to-violet-400 shadow hover:opacity-90">Request a demo</a>
-        </div>
-      </div>
+      <!-- Mobile Apps -->
+      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
+        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-fuchsia-900/30 border border-fuchsia-800 text-fuchsia-300">Mobile</div>
+        <h3 class="mt-3 text-xl font-semibold">Mobile Apps (Flutter)</h3>
+        <p class="mt-2 text-slate-300">
+          Polished cross-platform apps with Firebase Auth/Storage, push notifications, and in-app purchases.
+        </p>
+      </article>
+
+      <!-- Python Backends -->
+      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
+        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-amber-900/30 border border-amber-800 text-amber-300">APIs</div>
+        <h3 class="mt-3 text-xl font-semibold">Python Backends (FastAPI)</h3>
+        <p class="mt-2 text-slate-300">
+          Containerized APIs with CI/CD, observability, and GCP-native security — deployed on Cloud Run for effortless scale.
+        </p>
+      </article>
+
+      <!-- UX & Frontends -->
+      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
+        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-indigo-900/30 border border-indigo-800 text-indigo-300">UX</div>
+        <h3 class="mt-3 text-xl font-semibold">UX & Frontends</h3>
+        <p class="mt-2 text-slate-300">
+          React + Vite + Tailwind frontends with design systems, analytics, and lightning-fast performance.
+        </p>
+      </article>
+
+      <!-- Game Development -->
+      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
+        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-purple-900/30 border border-purple-800 text-purple-300">Games</div>
+        <h3 class="mt-3 text-xl font-semibold">Game Development</h3>
+        <p class="mt-2 text-slate-300">
+          Gamified training & interactive experiences with Unity or Flutter Flame — education, onboarding, and brand play.
+        </p>
+      </article>
     </div>
   </section>
 
   <!-- Tech Stack -->
-  <section id="stack" class="mx-auto max-w-6xl px-4 py-16 md:py-24">
-    <h2 class="text-2xl md:text-4xl font-bold text-slate-100 tracking-tight">Technology</h2>
-    <p class="mt-2 max-w-2xl text-slate-400">Proven tools, pragmatic choices.</p>
-    <div class="mt-8 grid gap-6 md:grid-cols-4">
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur"><h3 class="text-lg font-semibold text-slate-100">Python</h3><p class="mt-2 text-sm text-slate-300">FastAPI, pipelines, data prep</p></div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur"><h3 class="text-lg font-semibold text-slate-100">Flutter</h3><p class="mt-2 text-sm text-slate-300">Mobile UX, camera, PWA</p></div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur"><h3 class="text-lg font-semibold text-slate-100">LangChain</h3><p class="mt-2 text-sm text-slate-300">Agents, tools, RAG</p></div>
-      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm backdrop-blur"><h3 class="text-lg font-semibold text-slate-100">HTML/React</h3><p class="mt-2 text-sm text-slate-300">Marketing sites & dashboards</p></div>
+  <section id="stack" class="mx-auto max-w-6xl px-4 py-8">
+    <h2 class="text-2xl font-semibold mb-4">Built on Google Cloud</h2>
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Vertex AI</div>
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Gemini</div>
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Firebase Auth</div>
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Firebase Storage</div>
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Firestore Database</div>
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Cloud Run</div>
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Dialogflow CX</div>
+      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Stripe</div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section id="packages" class="mx-auto max-w-6xl px-4 py-10">
+    <h2 class="text-2xl font-semibold mb-4">AI Implementation Packages</h2>
+    <p class="text-slate-300 mb-4">Exact pricing is determined based on requirements, scope, and current system maturity.</p>
+    <div class="grid gap-4 md:grid-cols-3">
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="text-xl font-semibold">Starter</h3>
+        <p class="mt-2 text-slate-300">Conversational prototype or focused feature (e.g., flight intent + Stripe test mode).</p>
+        <ul class="mt-3 list-disc pl-5 text-slate-300 text-sm space-y-1">
+          <li>Gemini prompt design</li>
+          <li>Dialogflow CX intent + entities</li>
+          <li>Basic FastAPI + Cloud Run</li>
+        </ul>
+        <div class="mt-4 text-slate-400 text-sm">Pricing: TBD</div>
+      </div>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="text-xl font-semibold">Growth</h3>
+        <p class="mt-2 text-slate-300">End-to-end MVP with Firebase auth, Storage, and productionized APIs.</p>
+        <ul class="mt-3 list-disc pl-5 text-slate-300 text-sm space-y-1">
+          <li>Agent orchestration</li>
+          <li>Firestore session memory</li>
+          <li>CI/CD + Observability</li>
+        </ul>
+        <div class="mt-4 text-slate-400 text-sm">Pricing: TBD</div>
+      </div>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+        <h3 class="text-xl font-semibold">Enterprise</h3>
+        <p class="mt-2 text-slate-300">Multi-agent systems, data pipelines, SSO, and hotel inventory integrations.</p>
+        <ul class="mt-3 list-disc pl-5 text-slate-300 text-sm space-y-1">
+          <li>Advanced security & audit</li>
+          <li>SLAs & cost optimization</li>
+          <li>Dedicated support</li>
+        </ul>
+        <div class="mt-4 text-slate-400 text-sm">Pricing: Custom quote</div>
+      </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="mx-auto max-w-6xl px-4 py-16 md:py-24">
-    <h2 class="text-2xl md:text-4xl font-bold text-slate-100 tracking-tight">Let’s build something brilliant</h2>
-    <p class="mt-2 max-w-2xl text-slate-400">Tell us about your idea, use case, or dataset.</p>
-    <div class="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
-      <form class="grid gap-4 md:grid-cols-2" onsubmit="return false;">
-        <div>
-          <label class="block text-xs text-slate-300">Name</label>
-          <input id="contact-name" class="mt-1 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-sm text-white" placeholder="Your name" />
-        </div>
-        <div>
-          <label class="block text-xs text-slate-300">Email</label>
-          <input id="contact-email" type="email" class="mt-1 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-sm text-white" placeholder="you@company.com" />
-        </div>
-        <div class="md:col-span-2">
-          <label class="block text-xs text-slate-300">Message</label>
-          <textarea id="contact-message" class="mt-1 w-full rounded-xl border border-white/10 bg-slate-900 px-3 py-2 text-sm text-white" rows="4" placeholder="What would you like to build?"></textarea>
-        </div>
-        <div class="flex items-center gap-4 md:col-span-2">
-          <button id="sendBtn" type="button" class="rounded-2xl bg-white/10 px-5 py-2 text-sm font-semibold text-white hover:bg-white/15">Send Email</button>
-          <div class="text-xs text-slate-300">
-            Or email us directly:
-            <a class="ml-2 underline hover:text-white" href="mailto:reachme@aibigeni.com">reachme@aibigeni.com</a>
-            <span class="mx-1">•</span>
-            <a class="underline hover:text-white" href="mailto:support@aibigeni.com">support@aibigeni.com</a>
-          </div>
-        </div>
-      </form>
+  <section id="contact" class="mx-auto max-w-6xl px-4 pb-14">
+    <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
+      <h2 class="text-2xl font-semibold">Let’s build it</h2>
+      <p class="mt-2 text-slate-300">Tell us about your use-case. We’ll scope the build and propose the fastest path to production on Google Cloud.</p>
+
+      <!-- Visible emails -->
+      <div class="mt-4 space-y-2">
+        <a href="mailto:reachme@aibigeni.com" class="inline-block rounded-xl border border-slate-700 px-4 py-3 hover:bg-slate-800/60">reachme@aibigeni.com</a>
+        <a href="mailto:support@aibigeni.com" class="ml-3 inline-block rounded-xl border border-slate-700 px-4 py-3 hover:bg-slate-800/60">support@aibigeni.com</a>
+      </div>
+
+      <!-- Optional contact inputs + send button that your /main.js wires to a mailto -->
+      <div class="mt-6 grid gap-3 sm:grid-cols-3">
+        <input id="contact-name" class="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" placeholder="Your name"/>
+        <input id="contact-email" class="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" placeholder="Your email"/>
+        <button id="sendBtn" class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 hover:bg-slate-700">Send</button>
+      </div>
+      <textarea id="contact-message" class="mt-3 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" rows="4" placeholder="Your message"></textarea>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-white/10">
-    <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 md:flex-row md:items-center md:justify-between">
-      <div class="flex items-center gap-3">
-        <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs><radialGradient id="gf" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#67e8f9" /><stop offset="50%" stop-color="#7c3aed" /><stop offset="100%" stop-color="#1e293b" /></radialGradient></defs>
-          <circle cx="32" cy="32" r="26" fill="url(#gf)" opacity="0.18" />
-          <path d="M32 12c6 0 10 4 10 10 0 6-4 10-10 10s-10 4-10 10c0 6 4 10 10 10" stroke="#67e8f9" stroke-width="2.5" stroke-linecap="round" fill="none" />
-          <circle cx="32" cy="22" r="3" fill="#67e8f9" />
-          <circle cx="22" cy="40" r="2.5" fill="#a78bfa" />
-          <circle cx="42" cy="40" r="2.5" fill="#22d3ee" />
-          <circle cx="32" cy="32" r="18" stroke="#a78bfa" stroke-opacity="0.35" fill="none" />
-        </svg>
-        <span class="text-sm">AIBIGeni</span>
-      </div>
-      <p class="text-xs text-slate-400">© <span id="y"></span> AIBIGeni, Inc. All rights reserved. Delaware • Kentucky</p>
-      <div class="flex flex-col items-start gap-1 text-xs md:text-sm">
-        <a href="mailto:reachme@aibigeni.com" class="text-slate-400 hover:text-white">reachme@aibigeni.com</a>
-        <a href="mailto:support@aibigeni.com" class="text-slate-400 hover:text-white">support@aibigeni.com</a>
-      </div>
+  <footer class="border-t border-slate-800/70 py-6">
+    <div class="mx-auto max-w-6xl px-4 text-sm text-slate-400">
+      © <span id="y"></span> AIBIGeni Inc • From Prompt to Production
     </div>
   </footer>
 
