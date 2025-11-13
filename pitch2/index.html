@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AIBIGENI – Skin & Hair Intelligence Investor Pitch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="AIBIGENI – AI-powered skin and hair intelligence platform for personalized care and product recommendations." />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.1);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 48%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.8), transparent);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #38bdf8, #0ea5e9 40%, #0369a1 70%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: white;
+      box-shadow: 0 12px 24px rgba(56, 189, 248, 0.4);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .nav-link {
+      position: relative;
+      padding-bottom: 2px;
+      color: var(--muted);
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, #38bdf8, #0ea5e9);
+      border-radius: 999px;
+      transition: width 0.18s ease-out;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      background: linear-gradient(to right, #38bdf8, #0ea5e9);
+      color: #020617;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.4);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* Main content */
+    main {
+      flex: 1;
+    }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 16px 40px;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 44px;
+    }
+
+    @media (max-width: 840px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--success);
+      box-shadow: 0 0 18px rgba(74, 222, 128, 0.7);
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4vw, 40px);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .hero-gradient {
+      background: linear-gradient(to right, #e5e7eb, #38bdf8, #7dd3fc);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 18px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .badge-strong {
+      border-color: rgba(56, 189, 248, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #020617;
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.55);
+    }
+
+    .btn-ghost {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .hero-footnote {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-footnote strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .hero-right-card {
+      background: radial-gradient(circle at top, #0f172a 0, #020617 55%);
+      border-radius: var(--radius-xl);
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right-card::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -20%;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.2), transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-platforms {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pill-icon {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(to right, #38bdf8, #0ea5e9);
+    }
+
+    .device-tags {
+      display: flex;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .device-pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.92);
+    }
+
+    .hero-metric-card {
+      margin-top: 6px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-metric-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .hero-metric-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .hero-metric-main strong {
+      font-size: 20px;
+    }
+
+    .hero-metric-sub {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-strip {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(148, 163, 184, 0.45);
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-strip span {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 18px;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 840px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 8px;
+    }
+
+    .card li {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .card li::before {
+      content: "•";
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+    }
+
+    .tag-strong {
+      border-color: rgba(56, 189, 248, 0.8);
+      color: var(--text);
+    }
+
+    /* Demo video section */
+    .demo-card {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: var(--shadow-soft);
+      padding: 14px 14px 12px;
+    }
+
+    .demo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .demo-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--muted);
+    }
+
+    .demo-status {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      color: var(--muted);
+    }
+
+    .demo-status span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .demo-body {
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 60%);
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 10px;
+    }
+
+    .demo-placeholder {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.9), #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .play-button {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #38bdf8, #0ea5e9);
+      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-button::before {
+      content: "";
+      display: block;
+      margin-left: 4px;
+      border-style: solid;
+      border-width: 10px 0 10px 18px;
+      border-color: transparent transparent transparent #020617;
+    }
+
+    .demo-caption {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Investors section */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .metrics-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .metric {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 8px 9px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .metric-value {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .metric-note {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* Contact */
+    .contact-card {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      padding: 12px 16px 18px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <div class="logo-circle">A</div>
+        <div class="brand-text">
+          <div class="brand-title">AIBIGENI</div>
+          <div class="brand-sub">Agentic AI for Everyday Decisions</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#overview" class="nav-link">Overview</a>
+        <a href="#product" class="nav-link">Product</a>
+        <a href="#investors" class="nav-link">For Investors</a>
+        <a href="#demo" class="nav-link">Demo</a>
+        <button class="nav-pill" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
+          Request Deck
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="shell">
+
+      <!-- HERO -->
+      <section id="overview" class="hero">
+        <div>
+          <div class="hero-kicker">
+            <span class="pill-dot"></span>
+            PRE-SEED INVESTOR OVERVIEW
+          </div>
+          <h1 class="hero-title">
+            <span class="hero-gradient">AI Skin & Hair Intelligence</span><br />
+            built for everyday consumers and beauty brands.
+          </h1>
+          <p class="hero-subtitle">
+            AIBIGENI is building a mobile-first platform that analyzes real skin and hair conditions in seconds
+            and guides users to the right routines and products, without needing a clinic visit.
+          </p>
+
+          <div class="hero-badges">
+            <div class="badge badge-strong">
+              <span class="badge-dot"></span>
+              Skin + Hair in one unified experience
+            </div>
+            <div class="badge">
+              <span class="badge-dot"></span>
+              Consumer &amp; white-label for clinics/brands
+            </div>
+            <div class="badge">
+              <span class="badge-dot"></span>
+              AI-powered recommendations, not diagnosis
+            </div>
+          </div>
+
+          <div class="hero-cta-row">
+            <button class="btn-primary" onclick="document.getElementById('investors').scrollIntoView({behavior:'smooth'});">
+              View Investor Highlights
+            </button>
+            <button class="btn-ghost" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'});">
+              Watch Product Walkthrough (soon)
+            </button>
+          </div>
+
+          <div class="hero-footnote">
+            <strong>Platform:</strong> Mobile app available on both <strong>Android</strong> and <strong>iOS</strong> for global reach.
+          </div>
+        </div>
+
+        <aside class="hero-right-card" aria-label="Market and traction snapshot">
+          <div class="hero-platforms">
+            <div class="chip">
+              <span class="pill-icon"></span>
+              AI Beauty &amp; Wellness
+            </div>
+            <div class="device-tags">
+              <div class="device-pill">Android</div>
+              <div class="device-pill">iOS</div>
+            </div>
+          </div>
+
+          <div class="hero-metric-card">
+            <div class="hero-metric-label">THE OPPORTUNITY</div>
+            <div class="hero-metric-main">
+              <strong>$570B+</strong>
+              <div class="hero-metric-sub">
+                Global beauty &amp; personal care spend each year — moving steadily to digital and mobile.
+              </div>
+            </div>
+            <div class="hero-metric-sub">
+              We focus on the high-intent layer: users already spending on skin &amp; hair, but overwhelmed by choice.
+            </div>
+          </div>
+
+          <div class="hero-strip">
+            <span>Thesis:</span> Put a smart “skin &amp; hair co-pilot” in every pocket, and connect it to the right brands and clinics.
+          </div>
+        </aside>
+      </section>
+
+      <!-- PRODUCT -->
+      <section id="product" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">PRODUCT</div>
+            <h2 class="section-title">One app. Two journeys: Skin &amp; Hair.</h2>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>What users experience</h3>
+            <p>
+              The AIBIGENI app acts like a personal skin &amp; hair assistant. Users quickly answer a few lifestyle questions,
+              capture guided photos, and get structured recommendations they can act on immediately.
+            </p>
+            <ul>
+              <li>Simple onboarding that captures age, concerns, routine, climate, and sensitivity.</li>
+              <li>Guided photos for face and scalp to keep the experience friendly and repeatable.</li>
+              <li>Instant, AI-curated suggestions: routines, ingredients to look for, and what to avoid.</li>
+              <li>Progress timeline: users can track changes session by session, not just “before and after”.</li>
+            </ul>
+            <div class="tag-row">
+              <div class="tag tag-strong">Android &amp; iOS apps</div>
+              <div class="tag">Privacy-first by design</div>
+              <div class="tag">Consumer-friendly language</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>How partners benefit</h3>
+            <p>
+              Clinics, dermatologists, salons, and beauty brands can offer the same intelligent experience under
+              their own label, while we power the engine.
+            </p>
+            <ul>
+              <li>White-label app for clinics and brands that want their own “AI skin &amp; hair coach”.</li>
+              <li>Structured leads: users arrive with their concerns and a pre-qualified routine suggestion.</li>
+              <li>Product mapping: connect recommendations to approved in-house products or partner lines.</li>
+              <li>Data insights (aggregated): understand which concerns are trending across regions and seasons.</li>
+            </ul>
+            <div class="tag-row">
+              <div class="tag">HealthTech / BeautyTech</div>
+              <div class="tag">SaaS + revenue share options</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM / SOLUTION -->
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">WHY NOW</div>
+            <h2 class="section-title">The problem &amp; how we solve it</h2>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>The problem</h3>
+            <p>
+              Millions of people struggle with acne, pigmentation, sensitivity, hair fall, and dandruff. They are
+              spending money, but not always getting results.
+            </p>
+            <ul>
+              <li>Too many products, too little guidance — decisions driven by ads, not real needs.</li>
+              <li>Limited access to specialists; clinics are expensive and often intimidating.</li>
+              <li>No unified view of what’s working over time across skin <em>and</em> hair.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Our solution</h3>
+            <p>
+              Start with a smart, mobile-first experience that anyone can use at home — then connect it to the
+              right professionals and brands.
+            </p>
+            <ul>
+              <li>AI-assisted assessments that are fast, repeatable, and easy to understand.</li>
+              <li>Personalized routines that adapt as the user’s skin and hair evolve.</li>
+              <li>Branded experiences for clinics and companies that want deeper engagement.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEMO VIDEO PLACEHOLDER -->
+      <section id="demo" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">PRODUCT DEMO</div>
+            <h2 class="section-title">Short walkthrough for investors</h2>
+          </div>
+        </div>
+
+        <div class="demo-card">
+          <div class="demo-header">
+            <div class="demo-label">INVESTOR DEMO VIDEO</div>
+            <div class="demo-status">
+              <span>Coming soon</span> – placeholder added
+            </div>
+          </div>
+
+          <div class="demo-body">
+            <div class="demo-placeholder">
+              <div class="play-button" aria-hidden="true"></div>
+            </div>
+            <div class="demo-caption">
+              A short 60–90 second video will show:
+              onboarding, a skin + hair session, viewing recommendations, and a quick checkout flow.
+              <br /><br />
+              <!--
+                When your video is ready, you can replace this placeholder with an actual video tag, e.g.:
+
+                <video controls width="100%">
+                  <source src="/assets/video/skin-hair-demo.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INVESTOR HIGHLIGHTS -->
+      <section id="investors" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">FOR INVESTORS</div>
+            <h2 class="section-title">What we are building as a company</h2>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Company &amp; model</h3>
+            <p>
+              AIBIGENI is an AI-native startup building agentic applications that automate real-world decisions.
+              Our initial focus is on skin &amp; hair care, where the problem is large, recurring, and measurable.
+            </p>
+            <ul>
+              <li>Sector: HealthTech / BeautyTech + SaaS (B2C + B2B2C).</li>
+              <li>Core asset: a mobile experience that learns from repeated sessions and user feedback.</li>
+              <li>Monetization: subscriptions, white-label fees, and product/clinic partnerships.</li>
+            </ul>
+            <div class="tag-row">
+              <div class="tag tag-strong">Pre-seed stage</div>
+              <div class="tag">MVP ready for demos</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Monetization paths</h3>
+            <p>
+              We see three clear revenue streams that can grow together:
+            </p>
+            <ul>
+              <li><strong>Consumer subscriptions</strong> – premium tracking features and priority guidance.</li>
+              <li><strong>White-label + SaaS</strong> – clinics and brands pay for custom-branded apps and admin tools.</li>
+              <li><strong>Commerce participation</strong> – revenue share on recommended products and services.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="metrics-row">
+          <div class="metric">
+            <div class="metric-label">SECTOR</div>
+            <div class="metric-value">HealthTech / BeautyTech</div>
+            <div class="metric-note">Skin &amp; Hair focus</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">MODEL</div>
+            <div class="metric-value">SaaS + B2C</div>
+            <div class="metric-note">Subscriptions &amp; white-label</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">PLATFORM</div>
+            <div class="metric-value">Android / iOS</div>
+            <div class="metric-note">Mobile-first distribution</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">CONNECT</div>
+            <h2 class="section-title">Interested in a deeper dive?</h2>
+          </div>
+        </div>
+
+        <div class="card contact-card">
+          <div>
+            <p>
+              We are happy to share a short deck, demo access, and a deeper view of the roadmap,
+              including how this platform can extend into adjacent wellness categories.
+            </p>
+            <p style="margin-top:6px;">
+              Please reach out directly and include “AIBIGENI Investor Intro” in the subject line.
+            </p>
+          </div>
+          <div>
+            <p><strong>Contact</strong></p>
+            <p>📞 +1-346-228-8468</p>
+            <p>✉️ <a href="mailto:reachme@aibigeni.com">reachme@aibigeni.com</a></p>
+            <p>
+              🔗 <a href="https://www.linkedin.com/in/prashanth-k-chicago" target="_blank" rel="noopener">
+              linkedin.com/in/prashanth-k-chicago</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> AIBIGENI Inc. – Skin &amp; Hair Intelligence Platform
+  </footer>
+</div>
+
+<script>
+  // Simple year injection, no frameworks needed
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
