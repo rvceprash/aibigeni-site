@@ -1,190 +1,658 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>EasyFly — Conversational Travel by AIBIGeni</title>
-  <meta name="description" content="EasyFly is a conversational flight booking experience powered by Dialogflow CX, Gemini, Vertex AI, Stripe, and Cloud Run."/>
-  <meta name="theme-color" content="#0f172a"/>
-  <script>tailwind=config={theme:{extend:{colors:{slatebg:'#0f172a'}, boxShadow:{soft:'0 6px 30px rgba(0,0,0,.35)'}}}}</script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style id="aibigeni-theme">
-  /* Theme variables */
-  :root{
-    --bg1:#0b1220;        /* deep navy */
-    --bg2:#121a2e;        /* ink */
-    --glow1:rgba(58,116,255,.28);
-    --glow2:rgba(142,68,173,.22);
-    --ring:#283552;       /* card border */
-    --cardTop:#101a33;    /* card gradient start */
-    --cardBot:#0b1220;    /* card gradient end */
-    --accent:#7aa2ff;     /* bright blue accent */
-  }
+  <meta charset="UTF-8" />
+  <title>Aibigeni | EasyFly Investor Pitch</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="EasyFly by Aibigeni – an AI-native conversational travel copilot that turns vague trip ideas into bookable itineraries with real flights, stays, and payments."
+  />
+  <link rel="icon" href="/assets/img/aibigeni-logo.png" />
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at top left, #111827, #020817);
+      --primary: #38bdf8;         /* cyan accent */
+      --primary-soft: rgba(56,189,248,0.14);
+      --indigo: #6366f1;          /* brand indigo */
+      --text-main: #e5e7eb;
+      --text-soft: #cbd5f5;
+      --text-muted: #9ca3af;
+      --card-bg: rgba(9,9,15,0.98);
+      --card-soft: rgba(10,16,30,0.98);
+      --border-soft: rgba(99,102,241,0.26);
+      --border-strong: rgba(56,189,248,0.36);
+      --radius-xl: 24px;
+      --radius-md: 18px;
+      --shadow-soft: 0 22px 55px rgba(2,6,23,0.9);
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont,
+        -system-ui, "SF Pro Text", sans-serif;
+    }
 
-  /* Big dark gradient background with soft radial glows */
-  html, body{
-    background:
-      radial-gradient(1100px 700px at 18% 0%, var(--glow1), transparent 40%),
-      radial-gradient(900px 600px at 85% -10%, var(--glow2), transparent 45%),
-      linear-gradient(180deg, var(--bg1), var(--bg2)) !important;
-    color: #dbe7ff;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  /* Slightly glassy header */
-  header{
-    background: linear-gradient(180deg, rgba(10,16,31,.65), rgba(10,16,31,.25));
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    backdrop-filter: blur(6px);
-  }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-main);
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      font-size: 17px;
+    }
 
-  /* Hero heading + accent */
-  h1{
-    color:#e6edff;
-    text-shadow: 0 6px 30px rgba(0,0,0,.35), 0 2px 18px rgba(74,144,255,.15);
-    letter-spacing:.2px;
-  }
-  h1 .text-sky-400{ color: var(--accent) !important; }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
 
-  /* Section titles */
-  h2{ color:#e8eeff; }
+    a:hover {
+      text-decoration: underline;
+    }
 
-  /* “Card” look for all rounded blocks used in your layout */
-  section .rounded-2xl,
-  article{
-    background: linear-gradient(180deg, var(--cardTop), var(--cardBot)) !important;
-    border-color: var(--ring) !important;
-    box-shadow:
-      0 12px 38px rgba(0,0,0,.35),
-      inset 0 1px 0 rgba(255,255,255,.04);
-  }
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 18px 50px;
+    }
 
-  /* Small pills/tags stay readable */
-  .text-sky-300, .text-emerald-300, .text-fuchsia-300, .text-amber-300,
-  .text-indigo-300, .text-purple-300 { color:#bcd4ff !important; opacity:.9; }
+    /* HEADER */
 
-  /* Links & nav hover pop a bit more */
-  a{ transition: color .15s ease, filter .2s ease; }
-  nav a{ color:#b4c6ff; }
-  nav a:hover{ color:#ffffff; }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 26px;
+    }
 
-  /* Primary button glow nudge (keeps your existing gradient) */
-  .shadow-soft{ box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.04); }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-  /* Video well */
-  video{ background:#0a0f1f; border-color: var(--ring) !important; }
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 25% 0, #38bdf8, #1d4ed8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
 
-  /* Footer line tint */
-  footer{ border-top-color: rgba(255,255,255,.06) !important; }
-    </style>
+    .logo img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+    }
 
-  <link rel="icon" href="/favicon-32.png" />
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title span:first-child {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .brand-title span:last-child {
+      font-size: 1.22rem;
+      font-weight: 600;
+      color: var(--text-soft);
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1.4fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 28px;
+    }
+
+    .hero-copy {
+      padding: 22px 22px 20px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent),
+        radial-gradient(circle at top right, rgba(99,102,241,0.18), transparent),
+        rgba(7,11,23,0.98);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "✈︎";
+      position: absolute;
+      right: 18px;
+      bottom: 10px;
+      font-size: 2.4rem;
+      opacity: 0.06;
+      color: var(--primary);
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--primary);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 2.7vw, 2.5rem);
+      font-weight: 650;
+      line-height: 1.18;
+      margin: 0 0 10px;
+      color: #f9fafb;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .hero-bullets {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 0.86rem;
+      margin-bottom: 16px;
+    }
+
+    .hero-bullets div {
+      padding: 9px 10px;
+      border-radius: 14px;
+      background: rgba(8,12,24,1);
+      border: 1px solid rgba(56,189,248,0.26);
+      color: var(--primary);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .hero-bullets span.label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--primary), var(--indigo));
+      color: #020817;
+      font-size: 0.98rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary span.icon {
+      font-size: 1.1rem;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 26px 60px rgba(15,23,42,0.95);
+    }
+
+    .cta-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      max-width: 260px;
+    }
+
+    /* VIDEO */
+
+    .hero-video-wrap {
+      padding: 12px;
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at top, rgba(56,189,248,0.18), transparent),
+        var(--card-soft);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 8px;
+    }
+
+    .hero-video-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .hero-video-label span.strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    video.hero-video {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-soft);
+      background-color: #000;
+      display: block;
+    }
+
+    /* MAIN GRID */
+
+    .sections {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(260px, 1.4fr);
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    .card {
+      margin-bottom: 14px;
+      padding: 16px 18px 14px;
+      border-radius: var(--radius-md);
+      background: var(--card-bg);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      font-weight: 650;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--primary);
+    }
+
+    .card p,
+    .card ul {
+      margin: 0;
+      font-size: 0.94rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .card ul {
+      padding-left: 22px;
+      margin-top: 4px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 0.78rem;
+    }
+
+    .pill {
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(8,12,24,1);
+      border: 1px solid rgba(56,189,248,0.4);
+      color: var(--primary);
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    /* SIDEBAR */
+
+    aside .side-card {
+      padding: 12px 14px 10px;
+      border-radius: 18px;
+      background: var(--card-soft);
+      border: 1px solid rgba(75,85,99,0.7);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 10px;
+    }
+
+    .side-card h4 {
+      margin: 0 0 6px;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-weight: 650;
+    }
+
+    .side-card p,
+    .side-card ul {
+      margin: 0;
+      font-size: 0.86rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .side-card ul {
+      padding-left: 20px;
+      margin-top: 2px;
+    }
+
+    .ask-highlight {
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      margin-top: 22px;
+      padding: 12px 16px 12px;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at top, rgba(56,189,248,0.16), transparent),
+        rgba(6,10,20,1);
+      border: 1px solid var(--border-strong);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 26px;
+      align-items: center;
+      font-size: 0.9rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact strong {
+      color: var(--text-soft);
+      font-size: 0.98rem;
+    }
+
+    .contact span {
+      color: var(--text-muted);
+    }
+
+    .contact a {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    @media (max-width: 860px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .sections {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body class="min-h-screen bg-slatebg text-slate-200">
-  <header class="mx-auto flex max-w-6xl items-center justify-between px-4 py-6">
-    <a class="flex items-center gap-3" href="/">
-      <img src="/aibigeni-logo-1024.png" alt="AIBIGeni" class="h-10 w-10 rounded-xl"/>
-      <span class="text-xl font-semibold tracking-wide">AIBIGeni</span>
-    </a>
-    <nav class="hidden md:flex items-center gap-6 text-slate-300">
-      <a class="hover:text-white" href="/">Home</a>
-      <a class="hover:text-white" href="#demo">Demo</a>
-      <a class="hover:text-white" href="#how">How it works</a>
-      <a class="hover:text-white" href="#roadmap">Roadmap</a>
-      <a class="hover:text-white" href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <main class="mx-auto max-w-6xl px-4 pb-16">
-    <section class="mb-8">
-      <h1 class="text-4xl md:text-5xl font-bold leading-tight">
-        EasyFly — Conversational Travel
-      </h1>
-      <p class="mt-4 text-slate-300">
-        Natural-language flight search & booking via Dialogflow CX + Gemini. Secure checkout with Stripe. Hotel inventory coming soon.
-      </p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="#demo" class="rounded-xl border border-sky-500 bg-gradient-to-b from-sky-500 to-sky-700 px-4 py-3 font-semibold text-white shadow-soft hover:brightness-110">View Demo</a>
-        <a href="#contact" class="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:bg-slate-800/50">Talk to us</a>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="logo-wrap">
+        <div class="logo">
+          <img src="/assets/img/aibigeni-logo.png" alt="Aibigeni Logo" />
+        </div>
+        <div class="brand-title">
+          <span>Aibigeni Inc.</span>
+          <span>EasyFly – AI Native Travel Copilot</span>
+        </div>
       </div>
-    </section>
+      <nav>
+        <a href="#product">Product</a>
+        <a href="#market">Market</a>
+        <a href="#traction">Roadmap</a>
+        <a href="#ask">Raise</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-    <section id="demo" class="grid gap-6 md:grid-cols-2">
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-4">
-        <!-- Works immediately when you upload /assets/demo.mp4 -->
-        <video class="w-full aspect-video rounded-xl border border-slate-700 bg-slate-950" controls preload="metadata" src="/assets/demo.mp4">
-          Sorry, your browser doesn’t support embedded videos.
-        </video>
-        <p class="mt-3 text-xs text-slate-400">
-          Sample flow: origin → destination → dates → cabin → confirm → Stripe checkout.
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="hero-kicker">Investor One-Pager</div>
+        <h1 class="hero-title">
+          EasyFly turns “I want a quick Europe trip next month” into a booked itinerary in one conversation.
+        </h1>
+        <p class="hero-sub">
+          An AI-native travel experience that understands intent, plans routes, compares real options,
+          and completes payment in a single conversational flow. A modern travel agent built on a
+          conversational agent stack.
         </p>
+        <div class="hero-bullets">
+          <div>
+            <span class="label">Vision</span>
+            AI copilot for flights, stays & experiences — from idea to boarding pass.
+          </div>
+          <div>
+            <span class="label">Why now</span>
+            Users expect chat-first, personalized, low-friction booking journeys.
+          </div>
+          <div>
+            <span class="label">Proof</span>
+            Working demo: search → refine → confirm → pay.
+          </div>
+        </div>
+        <div class="hero-cta">
+          <button class="btn-primary" onclick="document.getElementById('demo-video').scrollIntoView({behavior:'smooth'});">
+            <span class="icon">▶</span> Watch product demo
+          </button>
+          <div class="cta-note">
+            Built by Aibigeni Inc. &mdash; applied AI studio with live builds in travel & wellness.
+          </div>
+        </div>
       </div>
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h2 class="text-xl font-semibold mb-2">Key Capabilities</h2>
-        <ul class="list-disc pl-5 text-slate-300 space-y-1">
-          <li>Dialogflow CX for robust intent & slot filling</li>
-          <li>Gemini prompts for natural, helpful responses</li>
-          <li>Vertex AI Search over flight/hotel datasets</li>
-          <li>FastAPI backend + Cloud Run for scale</li>
-          <li>Stripe Elements for secure payments</li>
-          <li>Firestore session memory & auth</li>
-        </ul>
+
+      <!-- VIDEO -->
+      <div class="hero-video-wrap" id="demo-video">
+        <div class="hero-video-label">
+          <span class="strong">EasyFly demo</span>
+          <span>90 seconds • Live product walkthrough</span>
+        </div>
+        <video
+          class="hero-video"
+          controls
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <!-- Ensure this path/file exists -->
+          <source src="assets/video/easyfly.mov" type="video/quicktime" />
+          <source src="assets/video/easyfly.mov" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </section>
 
-    <section id="how" class="mt-10 rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-      <h2 class="text-xl font-semibold mb-2">How it works</h2>
-      <ol class="list-decimal pl-5 text-slate-300 space-y-1">
-        <li>User asks in plain language (voice or chat)</li>
-        <li>CX extracts origin, destination, dates, cabin, pax</li>
-        <li>Backend queries inventory & prices (Vertex AI Search / APIs)</li>
-        <li>Gemini drafts natural confirmations or suggestions</li>
-        <li>Stripe for payment → booking confirmation</li>
-        <li>Firestore stores session & preferences securely</li>
-      </ol>
+    <!-- MAIN CONTENT -->
+    <section class="sections">
+      <!-- LEFT COLUMN -->
+      <div>
+        <div class="card" id="product">
+          <h3>Problem & Solution</h3>
+          <p>
+            Today, travelers juggle endless tabs, filters, hidden fees, and uncertainty.
+            OTAs list results; they don’t guide decisions.
+          </p>
+          <p>
+            <strong>EasyFly</strong> is a conversational travel copilot:
+          </p>
+          <ul>
+            <li>Understands natural language (&ldquo;3 nights somewhere warm from NYC under $900, non-stop&rdquo;).</li>
+            <li>Uses a Google-aligned conversational agent stack to structure routes, dates, constraints, and preferences.</li>
+            <li>Explains trade-offs (time, price, comfort) in simple language.</li>
+            <li>Completes booking & payment without leaving the conversation.</li>
+          </ul>
+          <div class="pill-row">
+            <div class="pill">Conversational agent orchestration</div>
+            <div class="pill">API-first travel integrations</div>
+            <div class="pill">Stripe-ready checkout</div>
+          </div>
+        </div>
+
+        <div class="card" id="market">
+          <h3>Market & Why Now</h3>
+          <p>
+            Online travel is massive and crowded. A focused slice of high-intent users choosing a trusted AI copilot
+            for complex decisions can drive meaningful GMV and defensible data.
+          </p>
+          <ul>
+            <li>AI copilots already shape search and planning behavior.</li>
+            <li>Travel’s constraints make it ideal for structured reasoning + dialog UX.</li>
+            <li>Incumbents bolt chat onto legacy funnels; EasyFly is built AI-first.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Product Status</h3>
+          <ul>
+            <li>End-to-end demo live: ask → curated options → refine → booking-ready flow.</li>
+            <li>Backend architecture ready for cloud deployment & real supplier integrations.</li>
+            <li>Secure payment path modeled with Stripe and best practices.</li>
+            <li>Designed to plug into GDS / OTA / airline APIs for production inventory.</li>
+          </ul>
+        </div>
+
+        <div class="card" id="traction">
+          <h3>Roadmap (Next 12 Months)</h3>
+          <ul>
+            <li><strong>Closed beta:</strong> targeted users/routes to validate conversion and UX.</li>
+            <li><strong>Inventory:</strong> integrate flights, hotels, and packages from partners.</li>
+            <li><strong>Agent depth:</strong> handle disruptions, rebooking, multi-city & business travel.</li>
+            <li><strong>Platform:</strong> white-label EasyFly as an AI booking layer for OTAs & airlines.</li>
+          </ul>
+        </div>
+
+        <div class="card" id="ask">
+          <h3>Raise & Fit</h3>
+          <p>
+            Exploring a focused <strong>pre-seed</strong> round to:
+          </p>
+          <ul>
+            <li>Harden infra, reliability, and observability for production traffic.</li>
+            <li>Deepen agentic flows across the full trip lifecycle.</li>
+            <li>Run pilots with strategic travel partners to prove uplift and unit economics.</li>
+          </ul>
+          <p class="ask-highlight">
+            Prioritizing partners who bring travel, fintech, or AI GTM leverage — not just capital.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN (SIDEBAR) -->
+      <aside>
+        <div class="side-card">
+          <h4>Monetization</h4>
+          <ul>
+            <li>Standard commissions on flights & hotels via partner rails.</li>
+            <li>Premium concierge fees for complex or urgent trips.</li>
+            <li>White-label & API: EasyFly as the conversational booking layer for OTAs / airlines.</li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h4>Why EasyFly</h4>
+          <ul>
+            <li>AI-first UX: designed around conversation, not retrofitted forms.</li>
+            <li>Travel-specific reasoning tuned for constraints, budgets, preferences.</li>
+            <li>Data loop from real intents & bookings → better personalization over time.</li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h4>Aibigeni Inc.</h4>
+          <p>
+            Builder-led AI studio behind EasyFly, SkinTelGeni (AI skincare), and HairCareGeni.
+            Deep experience across cloud, ML, and conversational systems.
+          </p>
+        </div>
+
+        <div class="side-card">
+          <h4>Ideal Partners</h4>
+          <ul>
+            <li>Investors who see AI agents as the next UX for travel.</li>
+            <li>Travel / airline / OTA operators seeking differentiated journeys.</li>
+            <li>Infra partners who value clean, API-first integration.</li>
+          </ul>
+        </div>
+      </aside>
     </section>
 
-    <section id="roadmap" class="mt-10 grid gap-6 md:grid-cols-3">
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="font-semibold">Now</h3>
-        <ul class="mt-2 text-slate-300 text-sm space-y-1">
-          <li>Flights conversational MVP</li>
-          <li>Stripe test mode checkout</li>
-          <li>Firestore memory</li>
-        </ul>
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div>
+        <strong>Contact</strong><br />
+        <span>Prashanth Krishnamurthy &mdash; Founder, Aibigeni Inc.</span>
       </div>
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="font-semibold">Next</h3>
-        <ul class="mt-2 text-slate-300 text-sm space-y-1">
-          <li>Hotel search & bundles</li>
-          <li>Seat selection & ancillaries</li>
-          <li>Post-booking chat & changes</li>
-        </ul>
+      <div>
+        <span>📞 <a href="tel:+13462288468">+1-346-228-8468</a></span>
       </div>
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="font-semibold">Later</h3>
-        <ul class="mt-2 text-slate-300 text-sm space-y-1">
-          <li>Loyalty integrations</li>
-          <li>Multi-agent travel ops</li>
-          <li>Voice IVR & kiosks</li>
-        </ul>
+      <div>
+        <span>✉️ <a href="mailto:reachme@aibigeni.com">reachme@aibigeni.com</a></span>
+      </div>
+      <div>
+        <span>🌐 <a href="https://aibigeni.com" target="_blank" rel="noopener">aibigeni.com</a></span>
+      </div>
+      <div>
+        <span>🔗 <a href="https://www.linkedin.com/in/prashanth-k-chicago" target="_blank" rel="noopener">
+          linkedin.com/in/prashanth-k-chicago
+        </a></span>
       </div>
     </section>
-
-    <section id="contact" class="mt-10 rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-      <h2 class="text-xl font-semibold">Partner with us</h2>
-      <p class="mt-2 text-slate-300">Looking to launch conversational booking or modernize your travel stack?</p>
-      <div class="mt-4 space-y-2">
-        <a class="inline-block rounded-xl border border-slate-700 px-4 py-3 hover:bg-slate-800/60" href="mailto:reachme@aibigeni.com">reachme@aibigeni.com</a>
-        <a class="inline-block rounded-xl border border-slate-700 px-4 py-3 hover:bg-slate-800/60 ml-3" href="mailto:support@aibigeni.com">support@aibigeni.com</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="border-t border-slate-800/70 py-6">
-    <div class="mx-auto max-w-6xl px-4 text-sm text-slate-400">
-      © <span id="y"></span> AIBIGeni Inc • EasyFly by AIBIGeni
-    </div>
-  </footer>
-  <script src="/main.js"></script>
+  </div>
 </body>
 </html>
