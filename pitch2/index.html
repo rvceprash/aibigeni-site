@@ -561,24 +561,12 @@
       overflow: hidden;
     }
 
-    .play-button {
-      width: 64px;
-      height: 64px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0, #38bdf8, #0ea5e9);
-      box-shadow: 0 18px 40px rgba(56, 189, 248, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .play-button::before {
-      content: "";
+    .demo-placeholder video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
       display: block;
-      margin-left: 4px;
-      border-style: solid;
-      border-width: 10px 0 10px 18px;
-      border-color: transparent transparent transparent #020617;
     }
 
     .demo-caption {
@@ -706,7 +694,7 @@
               View Investor Highlights
             </button>
             <button class="btn-ghost" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'});">
-              Watch Product Walkthrough (soon)
+              Watch Product Walkthrough 
             </button>
           </div>
 
@@ -833,7 +821,7 @@
         </div>
       </section>
 
-      <!-- DEMO VIDEO PLACEHOLDER -->
+      <!-- DEMO VIDEO -->
       <section id="demo" class="section">
         <div class="section-header">
           <div>
@@ -846,26 +834,20 @@
           <div class="demo-header">
             <div class="demo-label">INVESTOR DEMO VIDEO</div>
             <div class="demo-status">
-              <span>Coming soon</span> – placeholder added
+              <span>Now live</span> – product walkthrough
             </div>
           </div>
 
           <div class="demo-body">
             <div class="demo-placeholder">
-              <div class="play-button" aria-hidden="true"></div>
+              <video controls>
+                <source src="/assets/video/skincare.mov" type="video/quicktime">
+                Your browser does not support the video tag.
+              </video>
             </div>
             <div class="demo-caption">
-              A short 60–90 second video will show:
-              onboarding, a skin + hair session, viewing recommendations, and a quick checkout flow.
-              <br /><br />
-              <!--
-                When your video is ready, you can replace this placeholder with an actual video tag, e.g.:
-
-                <video controls width="100%">
-                  <source src="/assets/video/skin-hair-demo.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              -->
+              Short 60–90 second walkthrough:
+              onboarding, a combined skin + hair analysis session, viewing recommendations, and a quick checkout flow.
             </div>
           </div>
         </div>
