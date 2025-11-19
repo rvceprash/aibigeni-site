@@ -1,274 +1,825 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>AIBIGENI, Inc – AI Travel Startup</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AIBIGeni — From Prompt to Production</title>
-  <meta name="description" content="AIBIGeni builds AI-first apps for the real world — EasyFly conversational travel, multi-agent backends, and cloud-scale deployments on Google Cloud." />
-  <meta name="theme-color" content="#0f172a" />
-  <script>tailwind=config={theme:{extend:{colors:{slatebg:'#0f172a'}, boxShadow:{soft:'0 6px 30px rgba(0,0,0,.35)'}}}}</script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style id="aibigeni-theme">
-  /* Theme variables */
-  :root{
-    --bg1:#0b1220;        /* deep navy */
-    --bg2:#121a2e;        /* ink */
-    --glow1:rgba(58,116,255,.28);
-    --glow2:rgba(142,68,173,.22);
-    --ring:#283552;       /* card border */
-    --cardTop:#101a33;    /* card gradient start */
-    --cardBot:#0b1220;    /* card gradient end */
-    --accent:#7aa2ff;     /* bright blue accent */
-  }
+  <meta
+    name="description"
+    content="AIBIGENI, Inc is a Delaware C-Corp building AI-native travel products like EasyFly.ai – a conversational flight search and booking assistant powered by cloud and conversational AI."
+  />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1020;
+      --accent: #4f46e5;
+      --accent-soft: rgba(79, 70, 229, 0.12);
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --card-radius: 16px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+    }
 
-  /* Big dark gradient background with soft radial glows */
-  html, body{
-    background:
-      radial-gradient(1100px 700px at 18% 0%, var(--glow1), transparent 40%),
-      radial-gradient(900px 600px at 85% -10%, var(--glow2), transparent 45%),
-      linear-gradient(180deg, var(--bg1), var(--bg2)) !important;
-    color: #dbe7ff;
-  }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* Slightly glassy header */
-  header{
-    background: linear-gradient(180deg, rgba(10,16,31,.65), rgba(10,16,31,.25));
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    backdrop-filter: blur(6px);
-  }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-  /* Hero heading + accent */
-  h1{
-    color:#e6edff;
-    text-shadow: 0 6px 30px rgba(0,0,0,.35), 0 2px 18px rgba(74,144,255,.15);
-    letter-spacing:.2px;
-  }
-  h1 .text-sky-400{ color: var(--accent) !important; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-  /* Section titles */
-  h2{ color:#e8eeff; }
+    a:hover {
+      text-decoration: underline;
+    }
 
-  /* “Card” look for all rounded blocks used in your layout */
-  section .rounded-2xl,
-  article{
-    background: linear-gradient(180deg, var(--cardTop), var(--cardBot)) !important;
-    border-color: var(--ring) !important;
-    box-shadow:
-      0 12px 38px rgba(0,0,0,.35),
-      inset 0 1px 0 rgba(255,255,255,.04);
-  }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
 
-  /* Small pills/tags stay readable */
-  .text-sky-300, .text-emerald-300, .text-fuchsia-300, .text-amber-300,
-  .text-indigo-300, .text-purple-300 { color:#bcd4ff !important; opacity:.9; }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0 28px;
+    }
 
-  /* Links & nav hover pop a bit more */
-  a{ transition: color .15s ease, filter .2s ease; }
-  nav a{ color:#b4c6ff; }
-  nav a:hover{ color:#ffffff; }
+    .logo-text {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
 
-  /* Primary button glow nudge (keeps your existing gradient) */
-  .shadow-soft{ box-shadow: 0 10px 30px rgba(0,0,0,.35), 0 0 0 1px rgba(255,255,255,.04); }
+    .logo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
 
-  /* Video well */
-  video{ background:#0a0f1f; border-color: var(--ring) !important; }
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
 
-  /* Footer line tint */
-  footer{ border-top-color: rgba(255,255,255,.06) !important; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding-bottom: 3px;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      border-bottom-color: rgba(148, 163, 184, 0.5);
+    }
+
+    .hero {
+      margin-top: 12px;
+      padding: 26px 22px 26px;
+      border-radius: 20px;
+      background: radial-gradient(circle at top left, #1f2937 0, #020617 55%);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.8fr);
+      gap: 28px;
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(to right, #4f46e5, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 34rem;
+      margin-bottom: 16px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #22d3ee);
+      color: #0b1020;
+      border-color: rgba(248, 250, 252, 0.1);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.8);
+      border-color: rgba(148, 163, 184, 0.4);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(248, 250, 252, 0.7);
+      text-decoration: none;
+    }
+
+    .hero-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mini-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .hero-products-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 16px;
+      padding: 12px 12px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+    }
+
+    .hero-products-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .hero-product-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .hero-product-pill {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .hero-product-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .hero-product-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 38px;
+    }
+
+    .section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .section p.lead {
+      color: var(--muted);
+      font-size: 0.96rem;
+      max-width: 48rem;
+      margin-top: 4px;
+    }
+
+    .section-tag {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 22px;
+      margin-top: 16px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--card-radius);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 16px 16px 14px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .chip {
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--muted);
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .list {
+      margin-top: 8px;
+      padding-left: 16px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .list li {
+      margin-bottom: 3px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .product-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--card-radius);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 14px 14px 12px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .product-pill {
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(17, 24, 39, 0.9);
+      border-radius: 999px;
+      padding: 3px 9px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .product-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .product-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .product-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+      font-size: 0.86rem;
+    }
+
+    .product-media-placeholder {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      background: radial-gradient(circle at top left, #1e293b 0, #020617 75%);
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .team-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--card-radius);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 14px 14px 12px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .team-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .team-role {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .team-text {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .company-box {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--card-radius);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 14px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      box-shadow: var(--shadow-soft);
+    }
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      margin-top: 40px;
+      padding-top: 14px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 880px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero-right {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 18px 14px 16px;
+      }
+      .hero-title {
+        font-size: 1.7rem;
+      }
+      .page {
+        padding-inline: 14px;
+      }
+      nav {
+        flex-wrap: wrap;
+      }
+    }
   </style>
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
 </head>
-<body class="min-h-screen bg-slatebg text-slate-200">
-  <!-- Header -->
-  <header class="mx-auto flex max-w-6xl items-center justify-between px-4 py-6">
-    <a class="flex items-center gap-3" href="/">
-      <img src="/aibigeni-logo-1024.png" alt="AIBIGeni" class="h-10 w-10 rounded-xl" />
-      <span class="text-xl font-semibold tracking-wide">AIBIGeni</span>
-    </a>
-    <nav class="hidden md:flex items-center gap-6 text-slate-300">
-      <a class="hover:text-white" href="/pitch/">Pitch</a>
-      <a class="hover:text-white" href="#offerings">Offerings</a>
-      <a class="hover:text-white" href="#stack">Stack</a>
-      <a class="hover:text-white" href="#packages">Packages</a>
-      <a class="hover:text-white" href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <!-- Hero -->
-  <section class="mx-auto max-w-6xl px-4 pb-2 pt-4">
-    <div class="grid gap-8 md:grid-cols-2 items-center">
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
       <div>
-        <h1 class="text-4xl md:text-5xl font-bold leading-tight">
-          From Prompt to Production — <span class="text-sky-400">AI-first apps</span> for the real world.
-        </h1>
-        <p class="mt-4 text-slate-300">
-          We build intelligent travel experiences (EasyFly), multi-agent backends, and cloud-scale mobile & web apps on Google Cloud —
-          powered by Vertex AI, Gemini, Firebase, and Cloud Run.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="/pitch/" class="rounded-xl border border-sky-500 bg-gradient-to-b from-sky-500 to-sky-700 px-4 py-3 font-semibold text-white shadow-soft hover:brightness-110">Explore EasyFly</a>
-          <a href="#offerings" class="rounded-xl border border-slate-700 px-4 py-3 font-semibold text-slate-200 hover:bg-slate-800/50">See AI Projects</a>
+        <div class="logo-text">AIBIGENI, Inc.</div>
+        <div class="logo-pill">
+          AI-Native • Cloud Startup
         </div>
       </div>
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-4 shadow-soft">
-        <!-- Drop your /assets/demo.mp4 here later; this will start working automatically -->
-        <video class="w-full aspect-video rounded-xl border border-slate-700 bg-slate-950" controls preload="metadata" src="/assets/demo.mp4">
-          Sorry, your browser doesn’t support embedded videos.
-        </video>
-        <p class="mt-3 text-xs text-slate-400">
-          Conversational flight search & booking with Dialogflow CX + Vertex AI + Stripe checkout. Hotels next.
+      <nav>
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#team">Team</a>
+        <a href="#company">Company</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO: BUSINESS DESCRIPTION -->
+    <section class="hero" id="about">
+      <div>
+        <div class="hero-kicker">AI-POWERED DIGITAL-NATIVE BUSINESS</div>
+        <h1 class="hero-title">
+          Building an <span class="hero-highlight">AI travel agent</span>
+          for conversational flight search & booking.
+        </h1>
+        <p class="hero-subtitle">
+          AIBIGENI, Inc is a Delaware C-Corp building AI-native travel technology.
+          Our flagship product EasyFly.ai helps travelers avoid the friction of
+          complex flight search forms by letting them describe their trip in plain
+          language. A cloud-hosted agent then finds routes, compares options, and
+          completes bookings for them – and can also be embedded into partner apps
+          and platforms.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Offerings / Cards -->
-  <section id="offerings" class="mx-auto max-w-6xl px-4 py-10">
-    <h2 class="text-2xl font-semibold mb-4">What we ship</h2>
-    <div class="grid gap-4 md:grid-cols-3">
-      <!-- EasyFly -->
-      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
-        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-sky-900/40 border border-sky-800 text-sky-300">Product</div>
-        <h3 class="mt-3 text-xl font-semibold">EasyFly — Conversational Travel</h3>
-        <p class="mt-2 text-slate-300">
-          Voice/chat flight booking powered by Dialogflow CX, Gemini, and Vertex AI Search. Payments via Stripe. Hotels next.
-        </p>
-        <a href="/pitch/" class="mt-3 inline-block text-sky-400 hover:text-sky-300">Learn more →</a>
-      </article>
-
-      <!-- AI Agents -->
-      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
-        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-emerald-900/30 border border-emerald-800 text-emerald-300">Agents</div>
-        <h3 class="mt-3 text-xl font-semibold">AI Agents & Automations</h3>
-        <p class="mt-2 text-slate-300">
-          Task-oriented, tool-using agents with memory (Firestore) and orchestration (Cloud Run) — customer support, research, travel ops, and more.
-        </p>
-      </article>
-
-      <!-- Mobile Apps -->
-      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
-        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-fuchsia-900/30 border border-fuchsia-800 text-fuchsia-300">Mobile</div>
-        <h3 class="mt-3 text-xl font-semibold">Mobile Apps (Flutter)</h3>
-        <p class="mt-2 text-slate-300">
-          Polished cross-platform apps with Firebase Auth/Storage, push notifications, and in-app purchases.
-        </p>
-      </article>
-
-      <!-- Python Backends -->
-      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
-        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-amber-900/30 border border-amber-800 text-amber-300">APIs</div>
-        <h3 class="mt-3 text-xl font-semibold">Python Backends (FastAPI)</h3>
-        <p class="mt-2 text-slate-300">
-          Containerized APIs with CI/CD, observability, and GCP-native security — deployed on Cloud Run for effortless scale.
-        </p>
-      </article>
-
-      <!-- UX & Frontends -->
-      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
-        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-indigo-900/30 border border-indigo-800 text-indigo-300">UX</div>
-        <h3 class="mt-3 text-xl font-semibold">UX & Frontends</h3>
-        <p class="mt-2 text-slate-300">
-          React + Vite + Tailwind frontends with design systems, analytics, and lightning-fast performance.
-        </p>
-      </article>
-
-      <!-- Game Development -->
-      <article class="rounded-2xl border border-slate-700 bg-slate-900/40 p-5 hover:bg-slate-900/60">
-        <div class="text-sm inline-flex px-2 py-1 rounded-full bg-purple-900/30 border border-purple-800 text-purple-300">Games</div>
-        <h3 class="mt-3 text-xl font-semibold">Game Development</h3>
-        <p class="mt-2 text-slate-300">
-          Gamified training & interactive experiences with Unity or Flutter Flame — education, onboarding, and brand play.
-        </p>
-      </article>
-    </div>
-  </section>
-
-  <!-- Tech Stack -->
-  <section id="stack" class="mx-auto max-w-6xl px-4 py-8">
-    <h2 class="text-2xl font-semibold mb-4">Built on Google Cloud</h2>
-    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Vertex AI</div>
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Gemini</div>
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Firebase Auth</div>
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Firebase Storage</div>
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Firestore Database</div>
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Cloud Run</div>
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Dialogflow CX</div>
-      <div class="rounded-xl border border-slate-700 bg-slate-900/40 p-4">Stripe</div>
-    </div>
-  </section>
-
-  <!-- Packages -->
-  <section id="packages" class="mx-auto max-w-6xl px-4 py-10">
-    <h2 class="text-2xl font-semibold mb-4">AI Implementation Packages</h2>
-    <p class="text-slate-300 mb-4">Exact pricing is determined based on requirements, scope, and current system maturity.</p>
-    <div class="grid gap-4 md:grid-cols-3">
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="text-xl font-semibold">Starter</h3>
-        <p class="mt-2 text-slate-300">Conversational prototype or focused feature (e.g., flight intent + Stripe test mode).</p>
-        <ul class="mt-3 list-disc pl-5 text-slate-300 text-sm space-y-1">
-          <li>Gemini prompt design</li>
-          <li>Dialogflow CX intent + entities</li>
-          <li>Basic FastAPI + Cloud Run</li>
-        </ul>
-        <div class="mt-4 text-slate-400 text-sm">Pricing: TBD</div>
-      </div>
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="text-xl font-semibold">Growth</h3>
-        <p class="mt-2 text-slate-300">End-to-end MVP with Firebase auth, Storage, and productionized APIs.</p>
-        <ul class="mt-3 list-disc pl-5 text-slate-300 text-sm space-y-1">
-          <li>Agent orchestration</li>
-          <li>Firestore session memory</li>
-          <li>CI/CD + Observability</li>
-        </ul>
-        <div class="mt-4 text-slate-400 text-sm">Pricing: TBD</div>
-      </div>
-      <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-        <h3 class="text-xl font-semibold">Enterprise</h3>
-        <p class="mt-2 text-slate-300">Multi-agent systems, data pipelines, SSO, and hotel inventory integrations.</p>
-        <ul class="mt-3 list-disc pl-5 text-slate-300 text-sm space-y-1">
-          <li>Advanced security & audit</li>
-          <li>SLAs & cost optimization</li>
-          <li>Dedicated support</li>
-        </ul>
-        <div class="mt-4 text-slate-400 text-sm">Pricing: Custom quote</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="mx-auto max-w-6xl px-4 pb-14">
-    <div class="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-      <h2 class="text-2xl font-semibold">Let’s build it</h2>
-      <p class="mt-2 text-slate-300">Tell us about your use-case. We’ll scope the build and propose the fastest path to production on Google Cloud.</p>
-
-      <!-- Visible emails -->
-      <div class="mt-4 space-y-2">
-        <a href="mailto:reachme@aibigeni.com" class="inline-block rounded-xl border border-slate-700 px-4 py-3 hover:bg-slate-800/60">reachme@aibigeni.com</a>
-        <a href="mailto:support@aibigeni.com" class="ml-3 inline-block rounded-xl border border-slate-700 px-4 py-3 hover:bg-slate-800/60">support@aibigeni.com</a>
+        <div class="hero-badges">
+          <span class="badge">Digital-native, cloud-first business model</span>
+          <span class="badge">AI / ML • Conversational Agents</span>
+          <span class="badge">Web & embeddable API</span>
+          <span class="badge">Hotels, cars & services – coming soon</span>
+        </div>
+        <div class="hero-cta-row">
+          <a href="#products" class="btn-primary">See Products</a>
+          <a href="#team" class="btn-ghost">Meet the Team</a>
+        </div>
+        <div class="hero-note">
+          Our revenue model combines consumer subscriptions with usage-based
+          API licensing for B2B travel partners.
+        </div>
       </div>
 
-      <!-- Optional contact inputs + send button that your /main.js wires to a mailto -->
-      <div class="mt-6 grid gap-3 sm:grid-cols-3">
-        <input id="contact-name" class="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" placeholder="Your name"/>
-        <input id="contact-email" class="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" placeholder="Your email"/>
-        <button id="sendBtn" class="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 hover:bg-slate-700">Send</button>
+      <div class="hero-right">
+        <div>
+          <div class="mini-label">Current & Upcoming Products</div>
+          <div class="hero-products-card">
+            <div class="hero-products-grid">
+              <div class="hero-product-row">
+                <div class="hero-product-pill">✈️</div>
+                <div>
+                  <div class="hero-product-title">EasyFly.ai</div>
+                  <div class="hero-product-text">
+                    Conversational flight booking agent with payments –
+                    exposed as a web experience & embeddable API for travel partners.
+                  </div>
+                </div>
+              </div>
+              <div class="hero-product-row">
+                <div class="hero-product-pill">🏨</div>
+                <div>
+                  <div class="hero-product-title">Hotels, Cars & More (Coming Soon)</div>
+                  <div class="hero-product-text">
+                    Roadmap includes conversational hotel booking, car rentals, and
+                    ancillary services integrated into the same AI travel agent.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-meta">
+          <span>• Built on modern cloud infrastructure</span>
+          <span>• Designed for global, digital delivery</span>
+        </div>
       </div>
-      <textarea id="contact-message" class="mt-3 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2" rows="4" placeholder="Your message"></textarea>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-800/70 py-6">
-    <div class="mx-auto max-w-6xl px-4 text-sm text-slate-400">
-      © <span id="y"></span> AIBIGeni Inc • From Prompt to Production
-    </div>
-  </footer>
+    <!-- SECTION: HOW THE BUSINESS WORKS -->
+    <section class="section" id="model">
+      <div class="section-tag">Business model</div>
+      <h2>Digital-native, cloud-first travel startup model</h2>
+      <p class="lead">
+        AIBIGENI operates as a fully online travel technology company. EasyFly.ai
+        is delivered entirely via web and APIs – no physical locations or
+        hardware. Monetization is driven by consumer access and B2B partners
+        integrating the EasyFly agent into their own products. Over time, the
+        same AI agent will power hotels, car rentals, and other travel services.
+      </p>
 
-  <script src="/main.js"></script>
+      <div class="grid-two">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Consumer-facing experience</div>
+            <span class="chip">Web & Mobile Web</span>
+          </div>
+          <p>
+            Travelers interact with EasyFly.ai in a conversational interface to
+            search, compare, and book flights. Traditional date and form inputs
+            are replaced by natural language.
+          </p>
+          <ul class="list">
+            <li>Users can ask for destinations, dates, and constraints in plain English.</li>
+            <li>Bookings are completed end-to-end with integrated payments.</li>
+            <li>Future plans include premium features on a subscription basis.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">B2B / platform integrations</div>
+            <span class="chip">API & Agent-to-Agent</span>
+          </div>
+          <p>
+            Third-party startups and enterprises can call the EasyFly agent via
+            APIs to complete flight search and booking workflows and receive
+            structured results back into their own systems, with the roadmap
+            extending to hotels, cars, and bundled itineraries.
+          </p>
+          <ul class="list">
+            <li>Usage-based API pricing for partners.</li>
+            <li>Embeddable agent endpoints for travel platforms and fintech apps.</li>
+            <li>Cloud-native, multi-tenant architecture for global customers.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: PRODUCTS -->
+    <section class="section" id="products">
+      <div class="section-tag">Products</div>
+      <h2>AI-native travel products</h2>
+      <p class="lead">
+        Our current focus is EasyFly.ai for flights, with a clear roadmap to
+        extend the same conversational agent to hotels, car rentals, and other
+        key travel services – all delivered purely as cloud-hosted software.
+      </p>
+      <p class="lead">
+        We primarily serve individual travelers who book their own trips online,
+        and travel or fintech companies that want to integrate an AI travel agent
+        into their own products.
+      </p>
+
+      <div class="products-grid">
+        <!-- EasyFly.ai -->
+        <article class="product-card">
+          <span class="product-pill">✈️ EasyFly.ai • AI Travel Assistant</span>
+          <h3 class="product-title">Conversational flight search &amp; booking</h3>
+          <p class="product-desc">
+            EasyFly.ai lets users search, compare, and book flights using natural
+            language instead of traditional forms. A conversational agent orchestrates
+            flight offers, pricing, and payment, and can also be exposed to other
+            startups as a “flight booking agent” via API. The product is currently
+            in an MVP stage with a working demo and ongoing iterations based on
+            early user and investor feedback.
+          </p>
+          <div class="product-meta">
+            <span>• Built with Python (FastAPI), cloud-hosted</span>
+            <span>• Uses conversational AI for entity extraction &amp; dialog</span>
+            <span>• Integrated payments &amp; booking flows</span>
+          </div>
+          <div class="product-links">
+            <a href="mailto:rvce.prash@gmail.com?subject=EasyFly.ai%20Demo%20Request"
+               target="_blank" rel="noopener">
+              Request Live Demo Access
+            </a>
+            <a href="mailto:rvce.prash@gmail.com?subject=EasyFly.ai%20API%20Docs%20Request"
+               target="_blank" rel="noopener">
+              Request Partner API Docs
+            </a>
+          </div>
+          <div class="product-media-placeholder">
+            <video controls width="100%">
+              <source src="/assets/video/easyfly.mov" type="video/quicktime" />
+              <!-- Optional: add an mp4 export later for wider browser support -->
+              <!-- <source src="/assets/video/easyfly.mp4" type="video/mp4" /> -->
+              Your browser does not support the video tag.
+            </video>
+            <small>
+              EasyFly.ai demo: conversational search → flight selection → payment.
+            </small>
+          </div>
+        </article>
+
+        <!-- Hotels, Cars & Services (Coming Soon) -->
+        <article class="product-card">
+          <span class="product-pill">🏨🚗 Conversational Hotels, Cars & Services • Coming Soon</span>
+          <h3 class="product-title">Extending the AI agent beyond flights</h3>
+          <p class="product-desc">
+            We are actively designing additional conversational agents that will
+            let travelers book hotels, car rentals, and other key services in the
+            same natural way they book flights with EasyFly.ai. The goal is a
+            unified AI travel companion that can handle an entire trip end-to-end.
+          </p>
+          <div class="product-meta">
+            <span>• Early design & prototyping stage</span>
+            <span>• Reuses the same cloud-native, multi-vertical agent</span>
+            <span>• Planned as additional modules on the EasyFly platform</span>
+          </div>
+          <div class="product-links">
+            <a href="mailto:rvce.prash@gmail.com?subject=Hotels%2FCars%20Roadmap%20Inquiry"
+               target="_blank" rel="noopener">
+              Discuss Hotels & Cars Roadmap
+            </a>
+          </div>
+          <div class="product-media-placeholder">
+            <small>
+              Concept stage: UX and flow designs for hotel booking, car rentals,
+              and bundled trips are under development.
+            </small>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION: TEAM -->
+    <section class="section" id="team">
+      <div class="section-tag">Team</div>
+      <h2>Founding team</h2>
+      <p class="lead">
+        AIBIGENI is led by founders with deep experience in enterprise cloud,
+        data, and AI, across Fortune 100 environments and fast-moving product
+        teams.
+      </p>
+
+      <div class="two-col">
+        <div class="team-card">
+          <div class="team-name">Prashanth K – Founder</div>
+          <div class="team-role">
+            15+ years in Enterprise Cloud Experience at Fortune 100 companies
+            (Humana Insurance, Oracle, Infosys, Capgemini America)
+          </div>
+          <p class="team-text">
+            Expert in AI/ML, conversational agents, cloud engineering, and
+            full-stack product development. Built consumer-facing apps in travel,
+            skincare, haircare and personal productivity.
+          </p>
+          <p class="team-text">
+            🔗 LinkedIn:
+            <a href="https://www.linkedin.com/in/prashanth-k-chicago" target="_blank" rel="noopener">
+              www.linkedin.com/in/prashanth-k-chicago
+            </a>
+          </p>
+        </div>
+
+        <div class="team-card">
+          <div class="team-name">Sushma S – Co-Founder</div>
+          <div class="team-role">
+            8+ years Experience as Data Engineer and Sr Product Owner at BrightSprings
+          </div>
+          <p class="team-text">
+            Brings together data engineering expertise and product ownership to
+            shape user-centric solutions, manage backlogs, and drive delivery across
+            AI-driven features and digital workflows.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: COMPANY INFO -->
+    <section class="section" id="company">
+      <div class="section-tag">Company</div>
+      <h2>Company information</h2>
+
+      <div class="company-box">
+        <p><strong>Legal Entity:</strong> AIBIGENI, Inc (Delaware C-Corp)</p>
+        <p><strong>Established:</strong> 2025</p>
+        <p><strong>Operating from:</strong> Louisville, Kentucky, USA</p>
+        <p>
+          AIBIGENI operates as a fully digital-native company. All products are
+          delivered online and powered by cloud infrastructure, enabling global
+          reach without physical stores or on-premise deployments.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION: CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-tag">Contact</div>
+      <h2>Get in touch</h2>
+      <p class="lead">
+        For cloud startup program reviews, partnerships, or technical details
+        about EasyFly.ai and our upcoming hotel/car agents, you can reach the
+        founding team directly.
+      </p>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-title" style="margin-bottom: 4px;">Program / partnership contact</div>
+          <p>
+            Email: <a href="mailto:rvce.prash@gmail.com">rvce.prash@gmail.com</a><br />
+            Location: Louisville, KY, USA
+          </p>
+          <p style="margin-top: 6px; font-size: 0.86rem; color: var(--muted);">
+            We are happy to provide sandbox access, technical architecture diagrams,
+            and additional details on our cloud stack for program eligibility review.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title" style="margin-bottom: 4px;">Next updates</div>
+          <p style="font-size: 0.86rem; color: var(--muted);">
+            • Public link to the live EasyFly.ai demo.<br />
+            • Documentation for partner API / agent integration.<br />
+            • Designs and timelines for hotel, car, and services expansion.<br />
+            • Technical one-pager outlining architecture &amp; cloud usage.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© <span id="year"></span> AIBIGENI, Inc. All rights reserved.</span>
+      <span>Digital-native AI travel startup</span>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
